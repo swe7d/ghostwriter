@@ -2,7 +2,7 @@
 
 ## Installation
 1. In the project, run `npm install`
-2. cd into `client` and run `npm install` followed by `npm run-scripts build`
+2. cd into `client` and run `npm install` followed by `npm run-script build`
 
 ## Run
 ### Development
