@@ -4,7 +4,7 @@ export default class BasicInfo extends Component {
     render() {
         return (
             <div>
-                Basic information component
+                Basic information component - test pr
             </div>
         )
     }
