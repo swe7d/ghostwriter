@@ -5,6 +5,9 @@ import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import BasicInfo from './BasicInfo';
+import MilestonesCreator from './MilestonesCreator';
+import DocumentDesigner from './DocumentDesigner'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,11 +35,11 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return 'Step 1: name, age, etc. etc.';
+      return <BasicInfo></BasicInfo>;
     case 1:
-      return 'Step 2: give information about marriages, millitary, etc. etc.';
+      return <MilestonesCreator></MilestonesCreator>;
     case 2:
-      return 'Step 3: order the milestones in the way they should appear in the book and publish';
+      return <DocumentDesigner></DocumentDesigner>;
     default:
       return 'Unknown step';
   }
