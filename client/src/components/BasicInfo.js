@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 
 export default class BasicInfo extends Component {
     render() {
+        const {firstname} = this.props.data
         return (
             <div>
-                Basic information component - test pr
+                test: {firstname}
             </div>
         )
     }

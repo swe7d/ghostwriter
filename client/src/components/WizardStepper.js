@@ -32,20 +32,20 @@ function getSteps() {
   return ['Who are we writing about', 'Life milestones', 'Finishing touches'];
 }
 
-function getStepContent(step) {
+function getStepContent(step, props) {
   switch (step) {
     case 0:
-      return <BasicInfo></BasicInfo>;
+      return <BasicInfo data={props.data.basic}></BasicInfo>;
     case 1:
-      return <MilestonesCreator></MilestonesCreator>;
+      return <MilestonesCreator data={props.data.milestones}></MilestonesCreator>;
     case 2:
-      return <DocumentDesigner></DocumentDesigner>;
+      return <DocumentDesigner data={props.data.design}></DocumentDesigner>;
     default:
       return 'Unknown step';
   }
 }
 
-export default function HorizontalNonLinearAlternativeLabelStepper() {
+export default function HorizontalNonLinearAlternativeLabelStepper(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState(new Set());
@@ -174,7 +174,7 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography className={classes.instructions}>{getStepContent(activeStep, props)}</Typography>
             <div>
               <Button disabled={activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
