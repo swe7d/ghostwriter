@@ -38,7 +38,7 @@ import WizardStepper from './WizardStepper'
 
 const initialState = {
     basic: {
-        firstname: "",
+        firstname: "test",
         lastname: "",
         dob: new Date(),
 
@@ -51,11 +51,11 @@ const initialState = {
 
 export default class Wizard extends Component {
     state = initialState
-    
+
     render() {
         return (
             <div>
-                <WizardStepper></WizardStepper>
+                <WizardStepper data={this.state}></WizardStepper>
             </div>
         )
     }
