@@ -1,21 +1,64 @@
-import React, { Component } from 'react'
-import clsx from 'clsx';
+import React from 'react'
+//import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
+//import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
-export default class BasicInfo extends Component {
-    render() {
+const useStyles = makeStyles(theme => ({
+    container: {
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 400,
+    },
+  }));
+
+export default function BasicInfo() {
+    const classes = useStyles();  
+
         return (
             //basic info
-            <div>
-                Basic information component - test pr
-                <p> First Name</p>
-                <p> Last Name</p>
-                <p> DOB </p>
-                <p> Hometown </p>
-            </div>
-            
+            <form className={classes.container} noValidate autoComplete="off">
+                <div>
+                    <TextField
+                    requiredid = "filled-required"
+                    required = "true"
+                    className={classes.textField}
+                    label="Name"
+                    margin="normal"
+                    variant="filled"
+                    />
+                </div>
+                <div>
+                    <TextField
+                    id="DOB"
+                    className={classes.textField}
+                    label="Date of Birth"
+                    margin="normal"
+                    variant="filled"
+                    />
+                </div>
+                <div>
+                    <TextField
+                    id="hometown"
+                    className={classes.textField}
+                    label="Hometown"
+                    margin="normal"
+                    variant="filled"
+                    />
+                </div>
+                <div>
+                    <TextField
+                    id="title"
+                    className={classes.textField}
+                    label="Title of Your Story"
+                    margin="normal"
+                    variant="filled"
+                    />
+                </div>
+            </form>           
         )
-    }
 }
