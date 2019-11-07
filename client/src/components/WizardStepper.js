@@ -6,7 +6,7 @@ import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BasicInfo from './BasicInfo';
-import MilestonesCreator from './MilestonesCreator';
+import MilestonesCreator from './milestones/MilestonesCreator';
 import DocumentDesigner from './DocumentDesigner'
 
 const useStyles = makeStyles(theme => ({
