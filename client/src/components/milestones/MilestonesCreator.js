@@ -2,29 +2,11 @@ import React, { Component } from 'react'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import AddMenu from './AddMenu'
-import { ListItem, List, ListItemText, withStyles, Card, CardContent, Typography, CardActionArea, CardActions, Button } from '@material-ui/core'
+import { List, Card, CardContent, Typography, CardActions, Button , Box, CardMedia} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import IconButton from '@material-ui/core/IconButton'
 import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
-import red from '@material-ui/core/colors/red'
-
-const style = theme => ({
-    list: {
-        backgroundColor: theme.palette.background.paper,
-        border: '1px',
-        borderColor: 'black',
-        margin: '10px',
-    },
-
-})
-
-const otherStyle = {
-    delete: {
-        color: 'red'
-    }
-}
 
 const typeToContent = {
     millitary: [
@@ -37,12 +19,16 @@ const typeToContent = {
     ]
 }
 
+const typeToImage = {
+    marriage: "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
+    millitary: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
+}
+
 
 class MilestonesCreator extends Component {
     state = {
         menuOpen: false,
         anchor: null,
-        milestones: [],
         editingItem: null,
     }
 
@@ -72,38 +58,36 @@ class MilestonesCreator extends Component {
         this.setState({
             ...this.state,
             menuOpen: false,
-            milestones: [...this.state.milestones, newMilestone]
         })
+        this.props.update.setMilestones([...this.props.data, newMilestone])
     }
 
     deleteMilestone = id => {
-        const newMilestones = this.state.milestones.filter(milestone => milestone.id !== id)
-        this.setState({
-            ...this.state,
-            milestones: newMilestones,
-        })
+        const newMilestones = this.props.data.filter(milestone => milestone.id !== id)
+        this.props.update.setMilestones(newMilestones)
     }
 
     editItem = (id) => {
         this.setState({
             ...this.state,
-            editingItem: this.state.milestones.find(milestone => milestone.id == id),
+            editingItem: this.props.data.find(milestone => milestone.id == id),
         })
     }
 
     closeEditItem = (id, data) => {
-        const copy = [...this.state.milestones]
+        const copy = [...this.props.data]
         copy.forEach((milestone, i) => {
             if (milestone.id === id) {
-                copy[i] = {...copy[i], data: {...copy[i].data, ...data}}
+                copy[i] = { ...copy[i], data: { ...copy[i].data, ...data } }
             }
         })
 
         this.setState({
             ...this.state,
-            milestones: copy,
             editingItem: null,
         })
+
+        this.props.update.setMilestones(copy)
     }
 
     render() {
@@ -114,30 +98,31 @@ class MilestonesCreator extends Component {
                     Add Milestone
                 </Fab>
                 <AddMenu anchor={this.state.anchor} open={this.state.menuOpen} onMenuClose={this.onMenuClose} onItemClick={this.onItemClick}></AddMenu>
-                <List component="nav" className={this.props.classes.list}>
-                    {this.state.milestones.map(milestone => (
+                <List component="nav" >
+                    {this.props.data.map(milestone => (
+                        <Box m={2}>
+                        <Card >
+                            <CardMedia
+                            component="img"
+                            image={typeToImage[milestone.type]}
+                            height="140"
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
+                                <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
+                                {milestone.data ? Object.keys(milestone.data).map(key => (
+                                    <Typography>{key}: {milestone.data[key]}</Typography>
+                                )) : null}
+                            </CardContent>
 
-                        // <ListItem>
-                            <Card>
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
-                                    <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
-                                    {milestone.data ? Object.keys(milestone.data).map(key => (
-                                        <Typography>{key}: {milestone.data[key]}</Typography>
-                                    )) : null}
-                                </CardContent>
-
-                                <CardActions>
-                                    <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
-                                    <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
+                            <CardActions style={{float:'right'}}>
+                                <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
+                                <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
                                     <DeleteIcon />
-                                </IconButton>                                </CardActions>
-                            </Card>
-                            // <ListItemSecondaryAction>
-
-                            // </ListItemSecondaryAction>
-                        // </ListItem>
-
+                                </IconButton>``                                
+                                </CardActions>
+                        </Card>
+                        </Box>
                     ))}
                 </List>
                 <EditMilestoneDialog open={this.state.editingItem} handleClose={this.closeEditItem}></EditMilestoneDialog>
@@ -146,4 +131,4 @@ class MilestonesCreator extends Component {
     }
 }
 
-export default withStyles(style, { withTheme: true })(MilestonesCreator)
+export default MilestonesCreator    

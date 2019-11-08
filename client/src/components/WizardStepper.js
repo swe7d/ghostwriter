@@ -37,7 +37,7 @@ function getStepContent(step, props) {
     case 0:
       return <BasicInfo data={props.data.basic}></BasicInfo>;
     case 1:
-      return <MilestonesCreator data={props.data.milestones}></MilestonesCreator>;
+      return <MilestonesCreator data={props.data.milestones} update={props.update.milestones}></MilestonesCreator>;
     case 2:
       return <DocumentDesigner data={props.data.design}></DocumentDesigner>;
     default:

@@ -1,10 +1,6 @@
 import React from 'react'
 import { Menu, MenuItem } from '@material-ui/core'
 
-const millitary = () => {
-    console.log('millitary')
-}
-
 export default function AddMenu(props) {
     const { anchor, open, onMenuClose, onItemClick } = props
 

@@ -52,10 +52,23 @@ const initialState = {
 export default class Wizard extends Component {
     state = initialState
 
+    setMilestones = (milestones) => {
+            this.setState({
+                ...this.state,
+                milestones,
+            })
+    }
+
+    update = {
+        milestones: {
+            setMilestones: this.setMilestones
+        }
+    }
+
     render() {
         return (
             <div>
-                <WizardStepper data={this.state}></WizardStepper>
+                <WizardStepper data={this.state} update={this.update}></WizardStepper>
             </div>
         )
     }
