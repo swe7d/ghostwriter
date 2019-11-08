@@ -9,7 +9,7 @@ import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
 
 const typeToContent = {
-    millitary: [
+    military: [
         'branch',
         'years of service',
     ],
@@ -21,7 +21,7 @@ const typeToContent = {
 
 const typeToImage = {
     marriage: "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
-    millitary: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
+    military: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
 }
 
 

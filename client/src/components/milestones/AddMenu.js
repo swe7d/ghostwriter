@@ -12,7 +12,7 @@ export default function AddMenu(props) {
             open={open}
             onClose={onMenuClose}
             >
-                <MenuItem onClick={onItemClick} id="millitary">Millitary</MenuItem>
+                <MenuItem onClick={onItemClick} id="military">Military</MenuItem>
                 <MenuItem onClick={onItemClick} id="marriage">Marriage</MenuItem>
             </Menu>
         </div>
