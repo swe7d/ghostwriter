@@ -70,7 +70,7 @@ class MilestonesCreator extends Component {
     editItem = (id) => {
         this.setState({
             ...this.state,
-            editingItem: this.props.data.find(milestone => milestone.id == id),
+            editingItem: this.props.data.find(milestone => milestone.id === id),
         })
     }
 
