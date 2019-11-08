@@ -2,20 +2,29 @@ import React, { Component } from 'react'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import AddMenu from './AddMenu'
-import { ListItem, List, ListItemText, withStyles } from '@material-ui/core'
+import { ListItem, List, ListItemText, withStyles, Card, CardContent, Typography, CardActionArea, CardActions, Button } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import IconButton from '@material-ui/core/IconButton'
 import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
+import red from '@material-ui/core/colors/red'
 
 const style = theme => ({
     list: {
         backgroundColor: theme.palette.background.paper,
         border: '1px',
         borderColor: 'black',
-    }
+        margin: '10px',
+    },
+
 })
+
+const otherStyle = {
+    delete: {
+        color: 'red'
+    }
+}
 
 const typeToContent = {
     millitary: [
@@ -100,7 +109,6 @@ class MilestonesCreator extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.state.milestones)}
                 <Fab variant="extended" aria-label="delete" color="primary" onClick={this.openMenu}>
                     <AddIcon />
                     Add Milestone
@@ -109,14 +117,26 @@ class MilestonesCreator extends Component {
                 <List component="nav" className={this.props.classes.list}>
                     {this.state.milestones.map(milestone => (
 
-                        <ListItem button onClick={() => this.editItem(milestone.id)}>
-                            <ListItemText primary={milestone.type} secondary={milestone.name}></ListItemText>
-                            <ListItemSecondaryAction>
-                                <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
+                        // <ListItem>
+                            <Card>
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
+                                    <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
+                                    {milestone.data ? Object.keys(milestone.data).map(key => (
+                                        <Typography>{key}: {milestone.data[key]}</Typography>
+                                    )) : null}
+                                </CardContent>
+
+                                <CardActions>
+                                    <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
                                     <DeleteIcon />
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
+                                </IconButton>                                </CardActions>
+                            </Card>
+                            // <ListItemSecondaryAction>
+
+                            // </ListItemSecondaryAction>
+                        // </ListItem>
 
                     ))}
                 </List>

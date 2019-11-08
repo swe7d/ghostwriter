@@ -31,6 +31,15 @@ export default class EditMilestoneDialog extends Component {
                                 <DialogContentText>
                                     Make changes to the milestone and save them
           </DialogContentText>
+          < TextField
+                                                margin = "dense"
+                                                id = "name"
+                                                label = "Name"
+                                                type = "text"
+                                                defaultValue = { this.props.open.data ? this.props.open.data.name : "" }
+                                                onChange = { this.onChange }
+                                                fullWidth
+                                    />
                                 {this.props.open.content.map(field => (
                                                 < TextField
                                                 margin = "dense"
