@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./deploy.sh"
+    "start": "node ./bin/www",
+    "build": "./deploy.sh"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
