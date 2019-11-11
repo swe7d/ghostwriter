@@ -35,7 +35,7 @@ function getSteps() {
 function getStepContent(step, props) {
   switch (step) {
     case 0:
-      return <BasicInfo data={props.data.basic}></BasicInfo>;
+      return <BasicInfo data={props.data.basic} update={props.update.basic}></BasicInfo>;
     case 1:
       return <MilestonesCreator data={props.data.milestones} update={props.update.milestones}></MilestonesCreator>;
     case 2:
