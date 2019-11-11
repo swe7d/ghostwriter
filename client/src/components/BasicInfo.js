@@ -39,17 +39,43 @@ class BasicInfo extends Component{
     //     })
     // }
 
-    // 
-    state = {
-        selectedDate: null,
-    }
+    // // 
+    // state = {
+    //     firstname: "",
+    //     lastname: "",
+    //     dob: "",
+    //     hometown: "",
+    //     title: "",
+    //     selectedDate: null,
+    // }
 
     handleDateChange = date => {
-        this.setState({
-            ...this.state,
+        const newInfo = {
+            ...this.props.data,
             selectedDate: date,
-        })
+        }
+
+        this.props.update.setBasicInfo(newInfo)
+
+        // this.setState({
+        //     ...this.state,
+        //     selectedDate: date,
+        // })
     };
+
+    handleInputChange = e => {
+        const newInfo = {
+            ...this.props.data,
+            [e.target.id]: e.target.value,
+        }
+
+        this.props.update.setBasicInfo(newInfo)
+
+        // this.setState({
+        //     ...this.state,
+        //     [e.target.id]: e.target.value,
+        // })
+    }
 
     render() {
 
@@ -58,7 +84,7 @@ class BasicInfo extends Component{
         return (
             //basic info
             <form className={classes.container} noValidate autoComplete="off">
-                {JSON.stringify(this.state)}
+                {/* {JSON.stringify(this.state)} */}
                 <div>
                     <TextField
                     requiredid = "filled-required"
@@ -67,6 +93,8 @@ class BasicInfo extends Component{
                     className={classes.textField}
                     label="First Name"
                     margin="normal"
+                    value={this.props.data.firstname}
+                    onChange={this.handleInputChange}
                     />
                 </div>
                 <div>
@@ -76,6 +104,8 @@ class BasicInfo extends Component{
                     id = "lastname"
                     className={classes.textField}
                     label="Last Name"
+                    value = {this.props.data.lastname}
+                    onChange = {this.handleInputChange}
                     margin="normal"
                     />
                 </div>
@@ -90,7 +120,7 @@ class BasicInfo extends Component{
                         id="DOB"
                         className={classes.textField}
                         label="Date of Birth"
-                        value={this.state.selectedDate}
+                        value={this.props.data.DOB}
                         onChange={this.handleDateChange}
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
@@ -104,6 +134,8 @@ class BasicInfo extends Component{
                     id="hometown"
                     className={classes.textField}
                     label="Hometown"
+                    value = {this.props.data.hometown}
+                    onChange = {this.handleInputChange}
                     margin="normal"
                     />
                 </div>
@@ -112,6 +144,8 @@ class BasicInfo extends Component{
                     id="title"
                     className={classes.textField}
                     label="Title of Your Story"
+                    value = {this.props.data.title}
+                    onChange = {this.handleInputChange}
                     margin="normal"
                     />
                 </div>

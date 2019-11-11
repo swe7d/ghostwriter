@@ -38,9 +38,12 @@ import WizardStepper from './WizardStepper'
 
 const initialState = {
     basic: {
-        firstname: "test",
+        firstname: "",
         lastname: "",
-        dob: new Date(),
+        dob: "",
+        hometown: "",
+        title: "",
+        selectedDate: null,
 
     },
     milestones: [],
@@ -59,15 +62,26 @@ export default class Wizard extends Component {
             })
     }
 
+    setBasicInfo = basic => {
+        this.setState({
+            ...this.state,
+            basic,
+        })
+    }
+
     update = {
         milestones: {
             setMilestones: this.setMilestones
+        },
+        basic: {
+            setBasicInfo: this.setBasicInfo
         }
     }
 
     render() {
         return (
             <div>
+                {JSON.stringify(this.state)}
                 <WizardStepper data={this.state} update={this.update}></WizardStepper>
             </div>
         )
