@@ -1,3 +1,5 @@
+//import * as jsPDF from 'jspdf'
+
 var express = require('express');
 var path = require('path');
 const favicon = require('express-favicon');
@@ -22,4 +24,9 @@ app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
+/*
+var doc = new jsPDF()
+doc.text('Hello World!', 10, 10)
+doc.save('new.pdf')
+*/
 module.exports = app;
