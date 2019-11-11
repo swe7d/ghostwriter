@@ -31,7 +31,6 @@ export default class EditMilestoneDialog extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.state)}
                 {
                     this.props.open ?
 
