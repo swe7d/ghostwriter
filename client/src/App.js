@@ -4,8 +4,8 @@ import './App.css';
 import Landing from './components/Landing'
 import Wizard from './components/Wizard'
 import MainNavbar from './components/nav/MainNavbar'
-import PDFGenerator from './components/PDFGenerator'
-import jsPDF from 'jspdf'
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,9 +45,7 @@ function App() {
 
         </Router>
       </ThemeProvider>
-      <PDFGenerator
-      data = {"DATA HERE"}
-      />
+      
 
     </div>
   );

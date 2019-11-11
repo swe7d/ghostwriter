@@ -7,6 +7,10 @@ class PDFGenerator extends Component {
         var doc = new jsPDF()
         //DEFAULT FONT SIZE IS 16
         //DEFAULT TEXT COLOR IS #000000
+        //AT FONT SIZE 16, 33 W CAN BE PRINTED BEFORE THE TEXT LINE WRAPS
+        var data = this.props.data.milestones;
+        
+        
         var infoText = "";
         var splitText = "";
         var defaultTextColor = "#000000"
@@ -22,32 +26,35 @@ class PDFGenerator extends Component {
         doc.setTextColor(defaultTextColor);
         doc.setFontSize(16);
         
-        for (var i = 0; i < 100; i++)
+        
+        //splitText = doc.splitTextToSize(data[0].type, 180);
+        //doc.text(splitText, 10, 20);
+        //doc.addPage("a4", "portrait");
+        
+        for (var i = 0; i < data.length; i++)
             {
-                infoText += "hello " + i.toString() + "\n";
-                //If we are at the end of the page, then add the text and
-                //start a new page to save the next block of strings to
-                if ( i != 0 && i % 41 == 0)
+                infoText += data[i].type + "\n";               
+                var keys = Object.keys(data[i].data);
+                var values = Object.values(data[i].data)
+                
+                //Print the data keys and values
+                for (var j = 0; j < keys.length; j++)
                     {
-                        splitText = doc.splitTextToSize(infoText, 180);
-                        doc.text(splitText, 10, 20);
-                        doc.addPage("a4", "portrait");
-                        
-                        //Add a watermark to the new page
-                        doc.setTextColor(watermarkTextColor); //#959595
-                        doc.setFontSize(140);
-                        doc.text(watermarkText, doc.internal.pageSize.getWidth() * (7/8), doc.internal.pageSize.getHeight(), "center", 55);
-                        
-                        //Reset Text Values
-                        doc.setTextColor(defaultTextColor);
-                        doc.setFontSize(16);
-                        infoText = "";
+                        infoText += keys[j] + ": ";
+                        infoText += values[j] + "\n";
                     }
-            }   
+                //infoText += JSON.stringify(infoText.length)
+                infoText += "\n"
+                
+            }
+        
         splitText = doc.splitTextToSize(infoText, 180);
         doc.text(splitText, 10, 20);
-        
+        doc.addPage("a4", "portrait");    
         infoText = "";
+        
+        splitText = doc.splitTextToSize(infoText, 180);
+        doc.text(splitText, 10, 20);
         doc.save('realNew.pdf')
     }
     
