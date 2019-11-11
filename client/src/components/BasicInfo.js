@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 //import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 //import MenuItem from '@material-ui/core/MenuItem';
@@ -25,9 +25,20 @@ const useStyles = makeStyles(theme => ({
   }));
 
 export default function BasicInfo() {
+    // state = {
+
+    // }
+
+    // onChange = e =>{
+    //     this.setState({
+    //         ...this.state,
+    //         [e.target.id]: e.target.value,
+    //     })
+    // }
+
     const classes = useStyles();  
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date('2019-11-18T00:00:00'));
+    const [selectedDate, setSelectedDate] = React.useState(new Date());
 
     const handleDateChange = date => {
         setSelectedDate(date);
@@ -40,8 +51,19 @@ export default function BasicInfo() {
                     <TextField
                     requiredid = "filled-required"
                     required = "true"
+                    id = "firstname"
                     className={classes.textField}
-                    label="Name"
+                    label="First Name"
+                    margin="normal"
+                    />
+                </div>
+                <div>
+                    <TextField
+                    requiredid = "filled-required"
+                    required = "true"
+                    id = "lastname"
+                    className={classes.textField}
+                    label="Last Name"
                     margin="normal"
                     />
                 </div>
@@ -53,9 +75,9 @@ export default function BasicInfo() {
                         variant="filled"
                         format="MM/dd/yyyy"
                         margin="normal"
-                        id="date"
+                        id="DOB"
                         className={classes.textField}
-                        label="Date"
+                        label="Date of Birth"
                         value={selectedDate}
                         onChange={handleDateChange}
                         KeyboardButtonProps={{
