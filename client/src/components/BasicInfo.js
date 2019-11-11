@@ -53,10 +53,8 @@ class BasicInfo extends Component{
 
     render() {
 
-
         const { classes } = this.props;  
 
- 
         return (
             //basic info
             <form className={classes.container} noValidate autoComplete="off">
