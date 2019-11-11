@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 //import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 //import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 
@@ -12,7 +12,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     container: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -22,10 +22,13 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
       width: 400,
     },
-  }));
+  })
 
-export default function BasicInfo() {
+class BasicInfo extends Component{
     // state = {
+        // firstname: "",
+        // lastname: "",
+        // dob: "",
 
     // }
 
@@ -36,17 +39,28 @@ export default function BasicInfo() {
     //     })
     // }
 
-    const classes = useStyles();  
+    // 
+    state = {
+        selectedDate: null,
+    }
 
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
+    handleDateChange = date => {
+        this.setState({
+            ...this.state,
+            selectedDate: date,
+        })
     };
 
+    render() {
+
+
+        const { classes } = this.props;  
+
+ 
         return (
             //basic info
             <form className={classes.container} noValidate autoComplete="off">
+                {JSON.stringify(this.state)}
                 <div>
                     <TextField
                     requiredid = "filled-required"
@@ -78,8 +92,8 @@ export default function BasicInfo() {
                         id="DOB"
                         className={classes.textField}
                         label="Date of Birth"
-                        value={selectedDate}
-                        onChange={handleDateChange}
+                        value={this.state.selectedDate}
+                        onChange={this.handleDateChange}
                         KeyboardButtonProps={{
                             'aria-label': 'change date',
                         }}
@@ -105,4 +119,8 @@ export default function BasicInfo() {
                 </div>
             </form>           
         )
+    }
+        
 }
+
+export default withStyles(styles)(BasicInfo)
