@@ -81,7 +81,7 @@ export default class Wizard extends Component {
     render() {
         return (
             <div>
-                {JSON.stringify(this.state)}
+                {/* {JSON.stringify(this.state)} */}
                 <WizardStepper data={this.state} update={this.update}></WizardStepper>
             </div>
         )
