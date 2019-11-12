@@ -4,6 +4,8 @@ import './App.css';
 import Landing from './components/Landing'
 import Wizard from './components/Wizard'
 import MainNavbar from './components/nav/MainNavbar'
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,9 +15,9 @@ import {
 import { createMuiTheme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import purple from '@material-ui/core/colors/purple';
+
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
-
 
 const theme = createMuiTheme({
   palette: {
@@ -26,6 +28,7 @@ const theme = createMuiTheme({
     danger: 'orange',
   },
 });
+
 
 function App() {
   return (
@@ -42,6 +45,7 @@ function App() {
 
         </Router>
       </ThemeProvider>
+      
 
     </div>
   );
