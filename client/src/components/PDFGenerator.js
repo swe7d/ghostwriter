@@ -8,6 +8,7 @@ class PDFGenerator extends Component {
         //DEFAULT FONT SIZE IS 16
         //DEFAULT TEXT COLOR IS #000000
         //AT FONT SIZE 16, 33 W CAN BE PRINTED BEFORE THE TEXT LINE WRAPS
+        var basicInfo = this.props.data.basic;
         var data = this.props.data.milestones;
         
         
@@ -30,12 +31,16 @@ class PDFGenerator extends Component {
         //splitText = doc.splitTextToSize(data[0].type, 180);
         //doc.text(splitText, 10, 20);
         //doc.addPage("a4", "portrait");
-        
+        infoText += basicInfo.firstname + " " + basicInfo.lastname + "\n";
+        infoText += JSON.stringify(basicInfo.selectedDate) +"\n";
+        infoText += "Born in " + basicInfo.hometown + "\n";
+        infoText += "\n" + basicInfo.title + " \n\n"
+            
         for (var i = 0; i < data.length; i++)
             {
                 infoText += data[i].type + "\n";               
                 var keys = Object.keys(data[i].data);
-                var values = Object.values(data[i].data)
+                var values = Object.values(data[i].data);
                 
                 //Print the data keys and values
                 for (var j = 0; j < keys.length; j++)
