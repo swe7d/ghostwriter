@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import WizardStepper from './WizardStepper'
+import PDFGenerator from './PDFGenerator'
+import jsPDF from 'jspdf'
 
 /**
  * REFEREENCE STATE:
@@ -81,8 +83,10 @@ export default class Wizard extends Component {
     render() {
         return (
             <div>
-                {/* {JSON.stringify(this.state)} */}
                 <WizardStepper data={this.state} update={this.update}></WizardStepper>
+            <PDFGenerator
+            data = {this.state}
+            />
             </div>
         )
     }
