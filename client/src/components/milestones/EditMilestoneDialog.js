@@ -7,15 +7,24 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default class EditMilestoneDialog extends Component {
-    state = {
+const initState = {}
 
-    }
+export default class EditMilestoneDialog extends Component {
+    state = initState
 
     onChange = e => {
         this.setState({
-            ...this.state,
-            [e.target.id]: e.target.value,
+            data: {
+                ...this.state.data,
+                [e.target.id]: e.target.value,
+            }
+        })
+    }
+
+    close = (data) => {
+        this.props.handleClose(this.props.open.id, data)
+        this.setState({
+            data:null
         })
     }
 
@@ -25,7 +34,7 @@ export default class EditMilestoneDialog extends Component {
                 {
                     this.props.open ?
 
-                        <Dialog open={this.props.open} onClose={this.props.handleClose} aria-labelledby="form-dialog-title">
+                        <Dialog open={this.props.open} onClose={() => this.close({})} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                             <DialogContent>
                                 <DialogContentText>
@@ -52,6 +61,7 @@ export default class EditMilestoneDialog extends Component {
                                         />
                                     ))}
             
+<<<<<<< HEAD
                             </DialogContent>
                                 <DialogActions>
                                     <Button onClick={() => this.props.handleClose(this.props.open.id, {})} color="primary">
@@ -61,6 +71,17 @@ export default class EditMilestoneDialog extends Component {
                                         Save
                                     </Button>
                                 </DialogActions>
+=======
+                    </DialogContent>
+                            <DialogActions>
+                                <Button onClick={() => this.close({})} color="primary">
+                                    Cancel
+          </Button>
+                                <Button onClick={() => this.close(this.state.data)} color="primary">
+                                    Save
+          </Button>
+                            </DialogActions>
+>>>>>>> development
                         </Dialog>
                         :
                         null
