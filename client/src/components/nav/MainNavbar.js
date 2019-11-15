@@ -38,6 +38,12 @@ class MainNavbar extends Component {
                         <Button component={Link} to="/wizard" color="inherit">
                             Wizard
                         </Button>
+                        <Button component={Link} to="/Login" color="inherit">
+                            Login
+                        </Button>
+                        <Button component={Link} to="/register" color="inherit">
+                            Register
+                        </Button>
                     </Toolbar>
                 </AppBar>
             </div>  

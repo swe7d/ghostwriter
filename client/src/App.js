@@ -3,6 +3,8 @@ import React from 'react';
 import './App.css';
 import Landing from './components/Landing'
 import Wizard from './components/Wizard'
+import Register from './components/Register'
+import Login from './components/Login'
 import MainNavbar from './components/nav/MainNavbar'
 
 
@@ -40,6 +42,8 @@ function App() {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route path="/wizard" component={Wizard} />
+              <Route path = "/register" component = {Register}/>
+              <Route path = "/login" component = {Login}/>
             </Switch>
           </Container>
 
