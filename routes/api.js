@@ -9,7 +9,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/books', (req, res) => {
-    const newBook = new models.Book(req.body)
+    const doc = {
+        finished: false,
+        data: req.body,
+    }
+
+    const newBook = new models.Book(doc)
     newBook.save((err, doc) => {
         if (err) {
             res.sendStatus(500).send(err)
