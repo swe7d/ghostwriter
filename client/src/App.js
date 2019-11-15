@@ -6,6 +6,8 @@ import Wizard from './components/Wizard'
 import Register from './components/Register'
 import Login from './components/Login'
 import MainNavbar from './components/nav/MainNavbar'
+
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -29,6 +31,7 @@ const theme = createMuiTheme({
   },
 });
 
+
 function App() {
   return (
     <div>
@@ -46,6 +49,7 @@ function App() {
 
         </Router>
       </ThemeProvider>
+      
 
     </div>
   );
