@@ -113,6 +113,8 @@ class MilestonesCreator extends Component {
         
         
     }
+
+    //
     onDown = (id)=>{
         
         var tempData = this.props.data
