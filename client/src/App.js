@@ -6,7 +6,7 @@ import Wizard from './components/Wizard'
 import Register from './components/Register'
 import Login from './components/Login'
 import MainNavbar from './components/nav/MainNavbar'
-
+import { Provider } from 'react-redux'
 
 import {
   BrowserRouter as Router,
@@ -20,6 +20,57 @@ import purple from '@material-ui/core/colors/purple';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+
+import { createStore, combineReducers } from 'redux'
+import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore' // <- needed if using firestore
+
+import firebase from 'firebase'
+
+
+var fbConfig = {
+  apiKey: "AIzaSyCQUtSLY1PKmfMJM2rLrJie4wEify1gjDg",
+  authDomain: "ghostwriter-f7e9d.firebaseapp.com",
+  databaseURL: "https://ghostwriter-f7e9d.firebaseio.com",
+  projectId: "ghostwriter-f7e9d",
+  storageBucket: "ghostwriter-f7e9d.appspot.com",
+  messagingSenderId: "398782157275",
+  appId: "1:398782157275:web:cb112c1521f1970d7f57fe",
+  measurementId: "G-C4GHKHJ0Q0"
+};
+
+
+
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+  // enableClaims: true // Get custom claims along with the profile
+}
+
+// Initialize firebase instance
+firebase.initializeApp(fbConfig)
+
+// Initialize other services on firebase instance
+firebase.firestore() // <- needed if using firestore
+// firebase.functions() // <- needed if using httpsCallable
+
+// Add firebase to reducers
+const rootReducer = combineReducers({
+  firebase: firebaseReducer,
+  // firestore: firestoreReducer // <- needed if using firestore
+})
+
+// Create store with reducers and initial state
+const initialState = {}
+const store = createStore(rootReducer, initialState)
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance // <- needed if using firestore
+}
 
 const theme = createMuiTheme({
   palette: {
@@ -35,21 +86,27 @@ const theme = createMuiTheme({
 function App() {
   return (
     <div>
-      <ThemeProvider theme={theme}>
+
+      <Provider store={store}>
+        <ReactReduxFirebaseProvider {...rrfProps}>
+        <ThemeProvider theme={theme}>
         <Router>
           <MainNavbar></MainNavbar>
           <Container maxWidth="sm">
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route path="/wizard" component={Wizard} />
-              <Route path = "/register" component = {Register}/>
-              <Route path = "/login" component = {Login}/>
+              <Route path="/register" component={Register} />
+              <Route path="/login" component={Login} />
             </Switch>
           </Container>
 
         </Router>
       </ThemeProvider>
-      
+        </ReactReduxFirebaseProvider>
+      </Provider>
+
+
 
     </div>
   );
