@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
-import jsPDF from 'jspdf'
 
 /**
  * REFEREENCE STATE:

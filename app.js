@@ -20,15 +20,9 @@ app.use(cookieParser());
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(favicon(__dirname + 'client/build/favicon.ico'));
-// app.use(bodyparser)
 
 app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
-/*
-var doc = new jsPDF()
-doc.text('Hello World!', 10, 10)
-doc.save('new.pdf')
-*/
 module.exports = app;
