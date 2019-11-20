@@ -45,7 +45,7 @@ const MainNavbar = (props) => {
                     {
                         !auth.isEmpty ?
                         <div>
-                        <Button  color="inherit">
+                        <Button component={Link} to="/wizard" color="inherit">
                         Wizard
                         </Button>
                         <Button color="inherit" onClick={() => firebase.logout()}>
