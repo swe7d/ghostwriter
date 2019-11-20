@@ -17,6 +17,9 @@ const css = {
 function Register(props) {
   const [goHome, setGoHome] = useState(false)
   const [email, setEmail] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState(null)
@@ -33,7 +36,8 @@ function Register(props) {
     },
     {
       email,
-      username: 'kaden',
+      firstName,
+      lastName,
     })
       .then(record => {
         console.log('hey buddy')
@@ -57,6 +61,7 @@ function Register(props) {
       <h1 style={css.title}>Signup</h1>
       <form onSubmit={registerUser}>
       <TextField
+      required
           id="standard-full-width"
           label="Email"
           style={{ margin: 8 }}
@@ -68,7 +73,33 @@ function Register(props) {
             shrink: true,
           }}
         />
+              <TextField
+              required
+          id="standard-full-width"
+          label="First Name"
+          style={{ margin: 8 }}
+          fullWidth
+          margin="normal"
+          onChange={e => setFirstName(e.target.value)}
+
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+              <TextField
+          id="standard-full-width"
+          label="Last Name"
+          style={{ margin: 8 }}
+          fullWidth
+          margin="normal"
+          onChange={e => setLastName(e.target.value)}
+
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
              <TextField
+             required
              type="password"
           id="standard-full-width"
           label="Password"
@@ -82,6 +113,7 @@ function Register(props) {
 
         />
                      <TextField
+                     required
              type="password"
           id="standard-full-width"
           label="Confirm Password"
