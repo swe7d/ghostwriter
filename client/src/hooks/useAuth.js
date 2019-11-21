@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
+import axios from '../api/api'
 
 const useAuth = () => {
     const [state, setState] = useState({
         token: null,
-        tokenReady: false,
+        auth: null,
     })
     const auth = useSelector(state => state.firebase.auth)
 
@@ -12,12 +13,12 @@ const useAuth = () => {
         if (auth.stsTokenManager) {
             setState({
                 token: auth.stsTokenManager.accessToken,
-                tokenReady: true,
+                auth
             })
         }
     }, [auth])
 
-    return [state.token, state.tokenReady]
+    return [state.token, state.auth]
 }
 
 export default useAuth

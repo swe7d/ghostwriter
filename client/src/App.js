@@ -94,10 +94,10 @@ function App() {
           <MainNavbar></MainNavbar>
           <Container maxWidth="sm">
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route path="/wizard" component={Wizard} />
+              <Route path="/wizard/:bookId" component={Wizard} />
               <Route path="/register" component={Register} />
               <Route path="/login" component={Login} />
+              <Route exact path="/" component={Landing} />
             </Switch>
           </Container>
 
@@ -113,3 +113,5 @@ function App() {
 }
 
 export default App;
+
+export { store }

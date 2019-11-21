@@ -22,6 +22,22 @@ router.get('/', function(req, res, next) {
     res.send('api works')
 });
 
+router.get('/books/:id', authMiddleware, (req, res) => {
+    const bookId = req.params.id
+    
+    models.Book.findById(bookId)
+    .then(doc => {
+        if (req.uid !== doc.owner) {
+            res.status(401).send('not your book')
+        } else {
+            res.send({data: doc})
+        }
+    })
+    .catch(err => {
+        res.status(400).send(err)
+    })
+})
+
 router.get('/books', authMiddleware, (req, res) => {
     const { uid } = req
 

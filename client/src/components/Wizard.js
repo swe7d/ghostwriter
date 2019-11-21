@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
 
@@ -38,55 +38,69 @@ import PDFGenerator from './PDFGenerator'
  */
 
 const initialState = {
-    basic: {
-        firstname: "",
-        lastname: "",
-        dob: "",
-        hometown: "",
-        title: "",
-        selectedDate: null,
-
-    },
-    milestones: [],
-    design: {
-        order: []
+    owner: '',
+    name: '',
+    data: {
+        basic: {
+            firstname: "",
+            lastname: "",
+            dob: "",
+            hometown: "",
+            title: "",
+            selectedDate: null,
+    
+        },
+        milestones: [],
+        design: {
+            order: []
+        }
     }
 }
 
-export default class Wizard extends Component {
-    state = initialState
+const Wizard = () => {
+    const [state, setState] = useState(initialState)
+    const setData = (newData) => {
+        setState({
+            ...state,
+            data: {
+                ...state.data,
+                ...newData
+            }
+        })
+    }
 
-    setMilestones = (milestones) => {
-            this.setState({
-                ...this.state,
+    const setMilestones = (milestones) => {
+            setData({
+                ...state.data,
                 milestones,
             })
     }
 
-    setBasicInfo = basic => {
-        this.setState({
-            ...this.state,
+    const setBasicInfo = basic => {
+        setData({
+            ...state.data,
             basic,
         })
     }
 
-    update = {
+    const update = {
         milestones: {
-            setMilestones: this.setMilestones
+            setMilestones: setMilestones
         },
         basic: {
-            setBasicInfo: this.setBasicInfo
+            setBasicInfo: setBasicInfo
         }
     }
 
-    render() {
+
         return (
             <div>
-                <WizardStepper data={this.state} update={this.update}></WizardStepper>
+                <WizardStepper data={state.data} update={update}></WizardStepper>
             <PDFGenerator
-            data = {this.state}
+            data = {state.data}
             />
             </div>
         )
     }
-}
+
+    export default Wizard
