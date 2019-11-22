@@ -7,9 +7,12 @@ const getAccount = () => {
     if (fs.existsSync(path)) {
       const cred = JSON.parse(fs.readFileSync(path))
       return cred
+    } else {
+      const cred = JSON.parse(process.env.FIREBASE)
+      return cred
     }
   } catch(err) {
-    const cred = JSON.parse(process.env.FIREBASE_ADMIN)
+    const cred = JSON.parse(process.env.FIREBASE)
     return cred
   }
 }

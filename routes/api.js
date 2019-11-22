@@ -83,17 +83,6 @@ router.put('/books/:id', authMiddleware, (req, res) => {
             })
         }
     })
-    // if (req.body.owner !== req.uid) {
-    //     res.status(401).send('you can only update your book')
-    // } else {
-    //     models.Book.updateOne(req.body)
-    //     .then(() => {
-    //         res.send('updated')
-    //     })
-    //     .catch(err => {
-    //         res.status(400).send({err})
-    //     })
-    // }
 })
 
 module.exports = router;
