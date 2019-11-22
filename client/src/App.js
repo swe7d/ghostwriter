@@ -26,6 +26,7 @@ import { ReactReduxFirebaseProvider, firebaseReducer } from 'react-redux-firebas
 import { createFirestoreInstance } from 'redux-firestore' // <- needed if using firestore
 
 import firebase from 'firebase'
+import useAuth from './hooks/useAuth';
 
 
 var fbConfig = {
@@ -82,34 +83,43 @@ const theme = createMuiTheme({
   },
 });
 
+const MainView = () => {
+  const [_, auth] = useAuth()
+  return (
+    auth.isLoaded || auth.uid ?
+
+      <Router>
+      <MainNavbar></MainNavbar>
+      <Container maxWidth="sm">
+        <Switch>
+          <Route path="/wizard/:bookId" component={Wizard} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Landing} />
+        </Switch>
+      </Container>
+
+    </Router>
+    :
+    null
+  )
+}
 
 function App() {
   return (
     <div>
-
       <Provider store={store}>
         <ReactReduxFirebaseProvider {...rrfProps}>
         <ThemeProvider theme={theme}>
-        <Router>
-          <MainNavbar></MainNavbar>
-          <Container maxWidth="sm">
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route path="/wizard" component={Wizard} />
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
-            </Switch>
-          </Container>
-
-        </Router>
+    <MainView></MainView>
       </ThemeProvider>
         </ReactReduxFirebaseProvider>
       </Provider>
-
-
 
     </div>
   );
 }
 
 export default App;
+
+export { store }
