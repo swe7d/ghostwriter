@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
+import BookHooks from '../hooks/useBooks'
 
 /**
  * REFEREENCE STATE:
@@ -38,8 +39,6 @@ import PDFGenerator from './PDFGenerator'
  */
 
 const initialState = {
-    owner: '',
-    name: '',
     data: {
         basic: {
             firstname: "",
@@ -57,8 +56,33 @@ const initialState = {
     }
 }
 
-const Wizard = () => {
+const Wizard = (props) => {
+    const bookId = props.match.params.bookId
+    const [getBook, syncBook, ready] = BookHooks.useBook()
+
     const [state, setState] = useState(initialState)
+
+    useEffect(() => {
+        if (!ready) return
+
+        getBook(bookId)
+        .then(book => {
+            if (book.data) {
+                setData(book.data)
+            } else {
+                setState(initialState)
+            }
+        })
+    }, [ready])
+
+    useEffect(() => {
+        const doSync = () => {
+            console.log('syncing', state.data)
+            syncBook(bookId, state.data)
+        }
+        doSync()
+    }, [state.data])
+
     const setData = (newData) => {
         setState({
             ...state,

@@ -30,7 +30,7 @@ router.get('/books/:id', authMiddleware, (req, res) => {
         if (req.uid !== doc.owner) {
             res.status(401).send('not your book')
         } else {
-            res.send({data: doc})
+            res.send(doc)
         }
     })
     .catch(err => {
@@ -62,25 +62,38 @@ router.post('/books', authMiddleware, (req, res) => {
         if (err) {
             res.status(400).send({err})
         } else {
-            res.send({data: {
-                bookId: doc.id
-            }})
+            res.send({bookId: doc.id})
         }
     })
 })
 
-router.put('/books', authMiddleware, (req, res) => {
-    if (req.body.owner !== req.uid) {
-        res.status(401).send('you can only update your book')
-    } else {
-        models.Book.updateOne(req.body)
-        .then(() => {
-            res.send('updated')
-        })
-        .catch(err => {
-            res.status(400).send({err})
-        })
-    }
+router.put('/books/:id', authMiddleware, (req, res) => {
+    const bookId = req.params.id
+    models.Book.findById(bookId, (err, book) => {
+        if (book.owner !== req.uid) {
+            res.status(401).send('you can only update your book')
+        } else {
+            book.data = req.body
+            book.save((err) => {
+                if (!err) {
+                    res.send('good')
+                } else {
+                    res.status(400).send('bad')
+                }
+            })
+        }
+    })
+    // if (req.body.owner !== req.uid) {
+    //     res.status(401).send('you can only update your book')
+    // } else {
+    //     models.Book.updateOne(req.body)
+    //     .then(() => {
+    //         res.send('updated')
+    //     })
+    //     .catch(err => {
+    //         res.status(400).send({err})
+    //     })
+    // }
 })
 
 module.exports = router;
