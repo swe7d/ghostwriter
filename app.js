@@ -25,6 +25,10 @@ app.use(favicon(__dirname + 'client/build/favicon.ico'));
 
 app.use('/api', apiRouter);
 app.use('/users', usersRouter);
-app.use('/', indexRouter);
+// app.all('*', indexRouter);
+app.all('*', function(req, res, next) {
+    console.log(__dirname)
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
 
 module.exports = app;
