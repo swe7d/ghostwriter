@@ -2,8 +2,17 @@ import axios from 'axios'
 import {useSelector} from 'react-redux'
 import { store } from '../App'
 
+const getApi = () => {
+    const app = process.env['HEROKU_APP_NAME']
+    if (app) {
+        return `https://${app}.herokuapp.com/api/`
+    } else {
+        return 'http://localhost:9000/api/'
+    }
+}
+
 const api = axios.create({
-    baseURL: 'http://localhost:9000/api/',
+    baseURL: getApi(),
     responseType: 'json',
 })
 
