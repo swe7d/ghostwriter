@@ -34,7 +34,7 @@ const styles = makeStyles((theme) => ({
 const MainNavbar = (props) => {
     const classes = styles()
     const firebase = useFirebase()
-    const [auth, _] = useAuth()
+    const [_, auth] = useAuth()
 
     const [dialogOpen, setDialogOpen] = useState(false)
     const getNewBook = BookHooks.useNewBook()
@@ -67,7 +67,7 @@ const MainNavbar = (props) => {
                         Ghost Writer
                          </Typography>
                     {
-                        auth ?
+                        auth.uid ?
                         <div>
                         <Button color="inherit" onClick={() => setDialogOpen(true)}>
                         <AddIcon></AddIcon> New Book

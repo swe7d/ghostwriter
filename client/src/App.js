@@ -84,10 +84,10 @@ const theme = createMuiTheme({
 });
 
 const MainView = () => {
-  const [auth, _] = useAuth()
-
+  const [_, auth] = useAuth()
   return (
-    auth ?
+    auth.isLoaded || auth.uid ?
+
       <Router>
       <MainNavbar></MainNavbar>
       <Container maxWidth="sm">

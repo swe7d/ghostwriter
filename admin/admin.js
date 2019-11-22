@@ -1,9 +1,21 @@
 var admin = require("firebase-admin");
+const fs = require('fs')
+const path = "./../firebase-credential.json"
 
-var serviceAccount = require("./../firebase-credential.json");
+const getAccount = () => {
+  try {
+    if (fs.existsSync(path)) {
+      const cred = JSON.parse(fs.readFileSync(path))
+      return cred
+    }
+  } catch(err) {
+    const cred = JSON.parse(process.env.FIREBASE_ADMIN)
+    return cred
+  }
+}
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(getAccount()),
   databaseURL: "https://ghostwriter-f7e9d.firebaseio.com"
 });
 
