@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-// import {Player,ControlBar} from 'video-react'
+import React from 'react'
+import useAuth from '../hooks/useAuth'
+import hooks from '../hooks/useBooks'
+import { useFirebase } from 'react-redux-firebase'
 import YouTube from 'react-youtube';
-//https://youtu.be/9WyZWvpZiB4
-class Landing extends Component {
-    videoOnReady(event) {
-        // access to player in all event handlers via event.target
-        event.target.pauseVideo();
-      }
-      render() {
-        const opts = {
-          height: '390',
-          width: '640',
-          playerVars: { // https://developers.google.com/youtube/player_parameters
-            autoplay: 1
-          }
-        };
-     
+
+const Landing = () => {
+    const [token, auth] = useAuth()
+    const firebase = useFirebase()
+    if (firebase.auth().currentUser) {
+        firebase.auth().currentUser.getIdToken(false)
+        .then(token => {
+            console.log(token)
+        })
+
+    }
+
         return (
             <dev>
                 <br></br>
@@ -26,12 +25,7 @@ class Landing extends Component {
             onReady={this._onReady}
             />
             </dev>
-            
-          
-        );
-      }
-     
-      
-    }
+        )
+}
 
 export default Landing

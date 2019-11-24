@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
-import jsPDF from 'jspdf'
+import BookHooks from '../hooks/useBooks'
 
 /**
  * REFEREENCE STATE:
@@ -39,55 +39,92 @@ import jsPDF from 'jspdf'
  */
 
 const initialState = {
-    basic: {
-        firstname: "",
-        lastname: "",
-        dob: "",
-        hometown: "",
-        title: "",
-        selectedDate: null,
-
-    },
-    milestones: [],
-    design: {
-        order: []
+    data: {
+        basic: {
+            firstname: "",
+            lastname: "",
+            dob: "",
+            hometown: "",
+            title: "",
+            selectedDate: null,
+    
+        },
+        milestones: [],
+        design: {
+            order: []
+        }
     }
 }
 
-export default class Wizard extends Component {
-    state = initialState
+const Wizard = (props) => {
+    const bookId = props.match.params.bookId
+    const [getBook, syncBook, ready] = BookHooks.useBook()
 
-    setMilestones = (milestones) => {
-            this.setState({
-                ...this.state,
+    const [state, setState] = useState(initialState)
+
+    useEffect(() => {
+        if (!ready) return
+
+        getBook(bookId)
+        .then(book => {
+            if (book.data) {
+                setData(book.data)
+            } else {
+                setState(initialState)
+            }
+        })
+    }, [ready])
+
+    useEffect(() => {
+        const doSync = () => {
+            console.log('syncing', state.data)
+            syncBook(bookId, state.data)
+        }
+        doSync()
+    }, [state.data])
+
+    const setData = (newData) => {
+        setState({
+            ...state,
+            data: {
+                ...state.data,
+                ...newData
+            }
+        })
+    }
+
+    const setMilestones = (milestones) => {
+            setData({
+                ...state.data,
                 milestones,
             })
     }
 
-    setBasicInfo = basic => {
-        this.setState({
-            ...this.state,
+    const setBasicInfo = basic => {
+        setData({
+            ...state.data,
             basic,
         })
     }
 
-    update = {
+    const update = {
         milestones: {
-            setMilestones: this.setMilestones
+            setMilestones: setMilestones
         },
         basic: {
-            setBasicInfo: this.setBasicInfo
+            setBasicInfo: setBasicInfo
         }
     }
 
-    render() {
+
         return (
             <div>
-                <WizardStepper data={this.state} update={this.update}></WizardStepper>
+                <WizardStepper data={state.data} update={update}></WizardStepper>
             <PDFGenerator
-            data = {this.state}
+            data = {state.data}
             />
             </div>
         )
     }
-}
+
+    export default Wizard
