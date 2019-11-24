@@ -13,6 +13,10 @@
     "express-favicon": "^2.0.1",
     "jspdf": "^1.5.3",
     "morgan": "~1.9.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "redux": "^4.0.4",
+    "video-react": "^0.14.1"
   }
 }
