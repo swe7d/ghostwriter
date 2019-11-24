@@ -1,13 +1,25 @@
 import React, { Component } from 'react'
-// import {Player,ControlBar} from 'video-react'
+import useAuth from '../hooks/useAuth'
+import hooks from '../hooks/useBooks'
+import { useFirebase } from 'react-redux-firebase'
 import YouTube from 'react-youtube';
-//https://youtu.be/9WyZWvpZiB4
 class Landing extends Component {
     videoOnReady(event) {
         // access to player in all event handlers via event.target
         event.target.pauseVideo();
       }
-      render() {
+ Landing = () => {
+    const [token, auth] = useAuth()
+    const firebase = useFirebase()
+    if (firebase.auth().currentUser) {
+        firebase.auth().currentUser.getIdToken(false)
+        .then(token => {
+            console.log(token)
+        })
+
+    }}
+
+    render() {
         const opts = {
           height: '390',
           width: '640',
@@ -29,9 +41,6 @@ class Landing extends Component {
             
           
         );
-      }
-     
-      
-    }
+};}
 
 export default Landing
