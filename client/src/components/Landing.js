@@ -5,15 +5,7 @@ import { useFirebase } from 'react-redux-firebase'
 
 
 const Landing = () => {
-    const [token, auth] = useAuth()
-    const firebase = useFirebase()
-    if (firebase.auth().currentUser) {
-        firebase.auth().currentUser.getIdToken(false)
-        .then(token => {
-            console.log(token)
-        })
-
-    }
+        console.log(process.env.REACT_APP_API)
 
         return (
             <div>   
