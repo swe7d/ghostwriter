@@ -12,7 +12,7 @@ import { useFirebase } from 'react-redux-firebase';
 import { useSelector } from 'react-redux'
 import AddBookDialog from './AddBookDialog';
 import useAuth from '../../hooks/useAuth';
-import BookHooks from '../../hooks/useBooks'
+import BookHooks from '../../hooks/BookHooks'
 import { useHistory } from 'react-router-dom'
 
 
@@ -72,12 +72,13 @@ const MainNavbar = (props) => {
                         <Button color="inherit" onClick={() => setDialogOpen(true)}>
                         <AddIcon></AddIcon> New Book
                         </Button>
-                        {/* <Button component={Link} to="/wizard" color="inherit">
-                        Wizard
-                        </Button> */}
+                        <Button color="inherit" component={Link} to="/mybooks">
+                            My Books
+                        </Button>
                         <Button color="inherit" onClick={() => firebase.logout()}>
                             Logout
                         </Button>
+
                         <AddBookDialog open={dialogOpen} handleSave={handleSave} handleClose={handleClose}></AddBookDialog>
 
                         </div>

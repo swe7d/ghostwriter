@@ -27,6 +27,7 @@ import { createFirestoreInstance } from 'redux-firestore' // <- needed if using 
 
 import firebase from 'firebase'
 import useAuth from './hooks/useAuth';
+import MyBooks from './components/mybooks/MyBooks';
 
 
 var fbConfig = {
@@ -95,6 +96,7 @@ const MainView = () => {
           <Route path="/wizard/:bookId" component={Wizard} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/mybooks" component={MyBooks} />
           <Route exact path="/" component={Landing} />
         </Switch>
       </Container>

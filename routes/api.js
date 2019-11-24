@@ -17,6 +17,26 @@ const authMiddleware = async (req, res, next) => {
 
 }
 
+const findBookMiddleware = async (req, res, next) => {
+    const bookId = req.params.id
+    models.Book.findById(bookId, (err, book) => {
+        if (err) {
+            res.status(400).send('cannot find book')
+        } else {
+            req.book = book
+            next()
+        }
+    })
+}
+
+const verifyOwnerMiddleware = (req, res, next) => {
+    if (req.uid !== req.book.owner) {
+        res.status(401).send('you can only touch your book')
+    } else {
+        next()
+    }
+}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.send('api works')
@@ -43,7 +63,7 @@ router.get('/books', authMiddleware, (req, res) => {
 
     models.Book.find({owner: uid})
     .then((doc) => {
-        res.send({data: doc})
+        res.send(doc)
     })
     .catch(err => {
         res.status(400).send({err})
@@ -67,13 +87,20 @@ router.post('/books', authMiddleware, (req, res) => {
     })
 })
 
+router.delete('/books/:id', [authMiddleware, findBookMiddleware, verifyOwnerMiddleware], async (req, res) => {
+    const deleted = await req.book.remove()
+    res.send(deleted)
+})
+
 router.put('/books/:id', authMiddleware, (req, res) => {
     const bookId = req.params.id
     models.Book.findById(bookId, (err, book) => {
         if (book.owner !== req.uid) {
             res.status(401).send('you can only update your book')
         } else {
-            book.data = req.body
+            for (const [key, val] of Object.entries(req.body)) {
+                book[key] = val
+            }
             book.save((err) => {
                 if (!err) {
                     res.send('good')
