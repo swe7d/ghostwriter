@@ -20,7 +20,6 @@ const css = {
 export default function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [goHome, setGoHome] = useState(false)
   const [error, setError] = useState(null)
   const history = useHistory()
 
@@ -40,13 +39,14 @@ export default function Login(props) {
       email,
       password
     })
+    .catch(e => {
+      setError(e)
+    })
 
   }
 
   return (
-    goHome ?
-    <Redirect to="/"></Redirect>
-    :
+ 
     <div>
       {error && error.message}
       <h1 style={css.title}>GhostWriter Memoir</h1>
@@ -76,23 +76,7 @@ export default function Login(props) {
             shrink: true,
           }}
         />
-      {/* <TextField
-        placeholder="*Email"
-        className={useStyles.input}
-        onChange={e => setEmail(e.target.value)}
-        inputProps={{
-          'aria-label': 'description',
-        }}
-      />
-      <TextField
-        type="password"
-        placeholder="*Password"
-        className={useStyles.input}
-        onChange={e => setPassword(e.target.value)}
-        inputProps={{
-          'aria-label': 'description',
-        }}
-      /> */}
+
       <h4 style={css.title} ><Button type="submit" onClick={login} color="inherit">
         Login
                         </Button></h4>
