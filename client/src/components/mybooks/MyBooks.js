@@ -4,8 +4,10 @@ import {useHistory} from 'react-router-dom'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import BookMenu from './BookMenu'
 import { List, ListItem, ListItemText, ListItemSecondaryAction, IconButton, Typography } from '@material-ui/core'
+import useRedirect from '../../hooks/useRedirect'
 
-export default function MyBooks() {
+export default function MyBooks(props) {
+    useRedirect(props.location.pathname)
     const [books, booksError, deleteBook, changeTitle] = BookHooks.useBooks()
     const history = useHistory()
 
