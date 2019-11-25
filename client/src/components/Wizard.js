@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
-import BookHooks from '../hooks/useBooks'
+import BookHooks from './../hooks/BookHooks'
 
 /**
  * REFEREENCE STATE:
@@ -78,7 +78,7 @@ const Wizard = (props) => {
     useEffect(() => {
         const doSync = () => {
             console.log('syncing', state.data)
-            syncBook(bookId, state.data)
+            syncBook(bookId, {data: state.data})
         }
         doSync()
     }, [state.data])
