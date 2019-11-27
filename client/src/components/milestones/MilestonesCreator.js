@@ -11,19 +11,29 @@ import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
 
 const typeToContent = {
-    military: [
-        'branch',
-        'years of service',
+    "Military Experience": [
+        {question: 'Which years have you served?',
+        answer: ""},
+        {question: "Under which branch have you served?",
+        answer: ""},
+        {question: "What places have you traveled throughout the process?",
+        answer: ""}
     ],
-    marriage: [
-        'spouse',
-        'marriage date',
+    "Relationship/Marriage": [
+        {question: "What was your spouses name?",
+        answer: ""},
+        {question: "What year was this?",
+        answer: ""},
+        {question: "Where were you married",
+        answer: ""},
+        {question: "Are you happy with it?",
+        answer: ""}
     ]
 }
 
 const typeToImage = {
-    marriage: "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
-    military: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
+    "Relationship/Marriage": "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
+    "Military Experience": "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
 }
 
 class MilestonesCreator extends Component {
@@ -41,6 +51,7 @@ class MilestonesCreator extends Component {
         })
     }
 
+
     onMenuClose = () => {
         this.setState({
             ...this.state,
@@ -48,21 +59,22 @@ class MilestonesCreator extends Component {
         })
     }
 
-    onItemClick = (event) => {
-            const type= event.target.id;
-      
-        const newMilestone = {
-            type,
-            id: uuidv4(),
-            content: typeToContent[type]
-        }
 
-        this.setState({
-            ...this.state,
-            menuOpen: false,
-        })
-        this.props.update.setMilestones([...this.props.data, newMilestone])
+    onItemClick = (event) => {
+        const type= event.target.id;
+  
+    const newMilestone = {
+        type,
+        id: uuidv4(),
+        content: typeToContent[type]
     }
+
+    this.setState({
+        ...this.state,
+        menuOpen: false,
+    })
+    this.props.update.setMilestones([...this.props.data, newMilestone])
+}
 
     deleteMilestone = id => {
         const newMilestones = this.props.data.filter(milestone => milestone.id !== id)
@@ -149,10 +161,10 @@ class MilestonesCreator extends Component {
                             height="140"
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
+                                {/* <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography> */}
                                 <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
                                 {milestone.data ? Object.keys(milestone.data).map(key => (
-                                    <Typography>{key}: {milestone.data[key]}</Typography>
+                                    <Typography><span><i>{key}</i></span> : <b>{milestone.data[key]}</b></Typography>
                                 )) : null}
                             </CardContent>
 
