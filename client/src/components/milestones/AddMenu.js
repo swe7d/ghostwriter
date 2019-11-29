@@ -1,10 +1,12 @@
-import React from 'react'
-import { Menu, MenuItem } from '@material-ui/core'
+import React, { useState } from 'react'
+import { Menu, MenuItem, Popover } from '@material-ui/core'
 
 import MilestoneFilter from './MilestoneFilter'
+import TextField from '@material-ui/core/TextField'
 
 export default function AddMenu(props) {
-    const { anchor, open, onMenuClose, onItemClick, filterMilestones, filterText } = props
+    const [filterText, setFilterText] = useState('')
+    const { anchor, open, onMenuClose, onItemClick, filterMilestones } = props
 
     // use state hook
 
@@ -73,25 +75,50 @@ export default function AddMenu(props) {
         */
         ]
 
-        const milestonesList = milestones.filter(name => {
-            return name.label.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
-        }).map(milestone => {
+        const filtered = filterText !== '' ? milestones.filter(ms => ms.label.toLowerCase().startsWith(filterText.toLowerCase())) : milestones
+        const milestonesList = filtered.map(milestone => {
             return (
                 <MenuItem onClick={onItemClick} id={milestone.id}>{milestone.label}</MenuItem>
             );
-        });
+        })
+        
+        // const milestonesList = milestones.filter(name => {
+        //     return name.label.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
+        // }).map(milestone => {
+        //     return (
+        //         <MenuItem onClick={onItemClick} id={milestone.id}>{milestone.label}</MenuItem>
+        //     );
+        // });
+        const handleFilterChange = e => {
+            e.preventDefault()
+            e.stopPropagation()
+            setFilterText(e.target.value)
+        }
 
         return(
             <div>
-            <Menu
+            <Popover
             anchorEl={anchor}
             keepMounted
             open={open}
             onClose={onMenuClose}
+            disableAutoFocusItem
+            autoFocus={false}
             >
-                <MilestoneFilter/>
+                <MenuItem>
+                
+                        <TextField
+          id="outlined-search"
+          label="Filter text"
+          type="search"
+          margin="normal"
+          variant="outlined"
+          onChange={handleFilterChange}
+        />
+                </MenuItem>
+                {/* <MilestoneFilter/> */}
                 {milestonesList}
-            </Menu>
+            </Popover>
             </div>
             )
 }
