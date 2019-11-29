@@ -11,17 +11,60 @@ import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
 
 const typeToContent = {
-    military: [
-        'branch',
-        'years of service',
+    background: [
+        'birthplace'
+    ],
+    childhood: [
+        ''
+    ],
+    teenyears: [
+        ''
+    ],
+    college: [
+        ''
+    ],
+    graduate: [
+        ''
+    ],
+    firstjob: [
+        ''
     ],
     marriage: [
         'spouse',
         'marriage date',
-    ]
+    ],
+    military: [
+        'branch',
+        'years of service',
+    ],
+    children: [
+        ''
+    ],
+    lifeevent: [
+        ''
+    ],
+    careerchanges: [
+        ''
+    ],
+    moves: [
+        ''
+    ],
+    travel: [
+        ''
+    ],
+    holidays: [
+        ''
+    ],
+    passions: [
+        ''
+    ],
+    lifelessons: [
+        ''
+    ],
 }
 
 const typeToImage = {
+    background: "https://www.wonderopolis.org/wp-content/uploads/2012/05/bean-seeds_shutterstock_57850783.jpg",
     marriage: "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
     military: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
 }
@@ -35,6 +78,7 @@ class MilestonesCreator extends Component {
         menuOpen: false,
         anchor: null,
         editingItem: null,
+        filterText: '',
     }
 
     openMenu = (event) => {
@@ -137,6 +181,12 @@ class MilestonesCreator extends Component {
         
     }
 
+    filterMilestones(value) {
+        this.setState({
+            filterText: value
+        });
+    }
+
     render() {
         return (
             <div>
@@ -144,7 +194,7 @@ class MilestonesCreator extends Component {
                     <AddIcon />
                     Add Milestone
                 </Fab>
-                <AddMenu anchor={this.state.anchor} open={this.state.menuOpen} onMenuClose={this.onMenuClose} onItemClick={this.onItemClick}></AddMenu>
+                <AddMenu anchor={this.state.anchor} open={this.state.menuOpen} onMenuClose={this.onMenuClose} onItemClick={this.onItemClick} filterMilestones={this.filterMilestones} filterText={this.state.filterText}></AddMenu>
                 <List component="nav" >
                     {this.props.data.map(milestone => (
                         <Box m={2}>
