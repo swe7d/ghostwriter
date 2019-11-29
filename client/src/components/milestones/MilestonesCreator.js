@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import AddMenu from './AddMenu'
-import { List, Card, CardContent, Typography, CardActions, Button , Box, CardMedia,CardActionArea} from '@material-ui/core'
+import { List, Card, CardContent, Typography, CardActions, Button , Box, CardMedia} from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
@@ -68,10 +68,6 @@ const typeToImage = {
     marriage: "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
     military: "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg"
 }
-
-const upIcon = "https://i.ibb.co/Lk9mZ76/up.png"
-const downIcon = "https://i.ibb.co/2880bjK/down.png"
-
 
 class MilestonesCreator extends Component {
     state = {
@@ -157,8 +153,6 @@ class MilestonesCreator extends Component {
         
         
     }
-
-    //
     onDown = (id)=>{
         
         var tempData = this.props.data

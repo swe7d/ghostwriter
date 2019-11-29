@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 
 const bookSchema = mongoose.Schema({
-    finished: {
-        type: Boolean,
+    owner: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type:String,
+        required: true,
     },
     data: {
         type: Object,
