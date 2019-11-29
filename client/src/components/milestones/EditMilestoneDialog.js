@@ -25,23 +25,23 @@ export default class EditMilestoneDialog extends Component {
     state = initState
     isOpen = false;
 
-     questions = [
+    //  questions = [
     
-        { name: "Military Experience",
-         question :"Which years have you served?"},
-         { name: "Military Experience",
-         question :"Under which branch have you served?"},
-         { name: "Military Experience",
-         question :"What places have you traveled throughout the process?"},
-        { name: "Relationship/Marriage",
-         question:  "What was your spouses name?"},
-         { name: "Relationship/Marriage",
-         question:  "What year was this?"},
-         { name: "Relationship/Marriage",
-         question:    "Where were you married"},
-         { name: "Relationship/Marriage",
-         question: "Are you happy with it?"}
-      ]
+    //     { name: "Military Experience",
+    //      question :"Which years have you served?"},
+    //      { name: "Military Experience",
+    //      question :"Under which branch have you served?"},
+    //      { name: "Military Experience",
+    //      question :"What places have you traveled throughout the process?"},
+    //     { name: "Relationship/Marriage",
+    //      question:  "What was your spouses name?"},
+    //      { name: "Relationship/Marriage",
+    //      question:  "What year was this?"},
+    //      { name: "Relationship/Marriage",
+    //      question:    "Where were you married"},
+    //      { name: "Relationship/Marriage",
+    //      question: "Are you happy with it?"}
+    //   ]
     
     onChange = e => {
         this.setState({
