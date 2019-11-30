@@ -18,6 +18,10 @@ class PDFGenerator extends Component {
         var watermarkTextColor = "#959595"
         var watermarkText = "WATERMARK"
         
+        doc.setFont('courier');
+        doc.setFontType('normal');
+        //console.log(doc.getFontList())
+        
         //Add a watermark at start of doc
         doc.setTextColor(watermarkTextColor); //#959595
         doc.setFontSize(140);
@@ -58,12 +62,58 @@ class PDFGenerator extends Component {
         doc.addPage("a4", "portrait");    
         infoText = "";
         
+        
+        //41 lines at current length: 53 letters per line
+        //split text array stores the LINES created in indexes. 
+        //Make sure new page pops up if split text array is greater than 42
+        for (var i = 0; i < 70; i++)
+            {
+                for (var j = 0; j < i; j++)
+                    {
+                        infoText += "l"
+                    }
+                infoText += i + "\n";
+            }
+        splitText = doc.splitTextToSize(infoText, 180);
+        
+        //Splitting up into pages
+        var tempString = "";
+        for (var i = 0; i < splitText.length; i++)
+            {
+                tempString += splitText[i] + "\n";
+                if (i % 41 == 0 && i != 0)
+                    {
+                        doc.text(tempString, 10, 20);
+                        doc.addPage("a4", "portrait");
+                        tempString = "";
+                    }
+                if (i == splitText.length - 1)
+                    {
+                        doc.text(tempString, 10, 20);
+                    }
+            }
+        
+        //doc.text(splitText, 10, 20);
+        doc.save('realNew.pdf')
+        //infoText = "";
+        
+        /*Testing char splicing
+        doc.addPage("a4", "portrait");
+        infoText = "abcdefgh two three four five six seven eight nine ten eleven twelve thirteen 14 15 16 17 18 19 20 21 22 23 24 25";
         splitText = doc.splitTextToSize(infoText, 180);
         doc.text(splitText, 10, 20);
-        doc.save('realNew.pdf')
+        doc.addPage("a4", "portrait");
+        infoText = "";
+        infoText += "length is " + splitText.length;
+        infoText += " and slot 0 is " + splitText[0];
+        infoText += " and last slot is " + splitText[splitText.length - 1];
+        var splitText2 = doc.splitTextToSize(infoText, 180);
+        doc.text(splitText2, 10, 20);
+        doc.save('realNew.pdf');*/
     }
     
     render() {  
+        
         return (
             <div>
                <button onClick = {this.downloadPDF}>

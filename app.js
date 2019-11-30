@@ -8,8 +8,9 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var apiRouter = require('./routes/api')
-var bodyparser = require('body-parser')
+var apiRouter = require('./routes/api');
+var bodyparser = require('body-parser');
+
 
 var app = express();
 
@@ -26,9 +27,4 @@ app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
-/*
-var doc = new jsPDF()
-doc.text('Hello World!', 10, 10)
-doc.save('new.pdf')
-*/
 module.exports = app;
