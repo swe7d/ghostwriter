@@ -1,7 +1,36 @@
-import React from 'react'
+import React, { Component } from 'react'
+import useAuth from '../hooks/useAuth'
+//import hooks from '../hooks/useBooks'
+import { useFirebase } from 'react-redux-firebase'
+import YouTube from 'react-youtube';
+class Landing extends Component {
+    videoOnReady(event) {
+        // access to player in all event handlers via event.target
+        event.target.pauseVideo();
+      }
+ Landing = () => {
+    const [token, auth] = useAuth()
+    const firebase = useFirebase()
+    if (firebase.auth().currentUser) {
+        firebase.auth().currentUser.getIdToken(false)
+        .then(token => {
+            console.log(token)
+        })
 
-const Landing = () => {
+    }}
+
+    render() {
+        const opts = {
+          height: '390',
+          width: '640',
+          playerVars: { // https://developers.google.com/youtube/player_parameters
+            autoplay: 1
+          }
+        };
+     
         return (
+        	
+            <dev>
             <div>   
                 <p>If you’ve been dreaming about writing your life story, dream no more—Ghostwriter makes it easy for anyone to write a book about their life, even if you have no professional writing experience. 
                 </p>
@@ -16,7 +45,16 @@ const Landing = () => {
                 <p>Your story and life lessons are too important to go untold.  Sign up for Ghostwriter now so you too can make your book a reality.
                 </p>
             </div>
-        )
-}
+            <YouTube
+            videoId="9WyZWvpZiB4"
+            opts={opts}
+            onReady={this._onReady}
+            />
+            </dev>
+            
+          
+        );
+};}
+
 
 export default Landing
