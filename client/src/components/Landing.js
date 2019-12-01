@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import React, { Component } from 'react'
 import useAuth from '../hooks/useAuth'
-import hooks from '../hooks/useBooks'
+//import hooks from '../hooks/useBooks'
 import { useFirebase } from 'react-redux-firebase'
 import YouTube from 'react-youtube';
 class Landing extends Component {
@@ -31,26 +29,8 @@ class Landing extends Component {
         };
      
         return (
+        	
             <dev>
-                <br></br>
-                <br></br>
-            <YouTube
-            videoId="9WyZWvpZiB4"
-            opts={opts}
-            onReady={this._onReady}
-            />
-            </dev>
-            
-          
-        );
-};}
-=======
-=======
->>>>>>> development
-import React from 'react'
-
-const Landing = () => {
-        return (
             <div>   
                 <p>If you’ve been dreaming about writing your life story, dream no more—Ghostwriter makes it easy for anyone to write a book about their life, even if you have no professional writing experience. 
                 </p>
@@ -65,8 +45,16 @@ const Landing = () => {
                 <p>Your story and life lessons are too important to go untold.  Sign up for Ghostwriter now so you too can make your book a reality.
                 </p>
             </div>
-        )
-}
->>>>>>> development
+            <YouTube
+            videoId="9WyZWvpZiB4"
+            opts={opts}
+            onReady={this._onReady}
+            />
+            </dev>
+            
+          
+        );
+};}
+
 
 export default Landing
