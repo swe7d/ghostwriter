@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import useAuth from '../hooks/useAuth'
 import hooks from '../hooks/useBooks'
@@ -44,6 +45,8 @@ class Landing extends Component {
         );
 };}
 =======
+=======
+>>>>>>> development
 import React from 'react'
 
 const Landing = () => {
