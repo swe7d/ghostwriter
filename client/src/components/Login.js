@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TextField from '@material-ui/core/TextField';
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import { useFirebase } from 'react-redux-firebase';
 import {Redirect} from 'react-router-dom'
+import useAuth from '../hooks/useAuth';
 
 const css = {
   title: {
@@ -15,11 +17,20 @@ const css = {
   }
 }
 
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [goHome, setGoHome] = useState(false)
   const [error, setError] = useState(null)
+  const history = useHistory()
+
+  const from = props.location.state ? props.location.state.from : null
+  const [_, auth] = useAuth()
+  useEffect(() => {
+    if (auth.uid) {
+      history.push(from ? from : '/')
+    }
+  }, [auth])
+
 
   const firebase = useFirebase()
   const login = (e) => {
@@ -28,18 +39,14 @@ export default function Login() {
       email,
       password
     })
-    .then(() => {
-      setGoHome(true)
+    .catch(e => {
+      setError(e)
     })
-    .catch(err => {
-      setError(err)
-    })
+
   }
 
   return (
-    goHome ?
-    <Redirect to="/"></Redirect>
-    :
+ 
     <div>
       {error && error.message}
       <h1 style={css.title}>GhostWriter Memoir</h1>
@@ -69,23 +76,7 @@ export default function Login() {
             shrink: true,
           }}
         />
-      {/* <TextField
-        placeholder="*Email"
-        className={useStyles.input}
-        onChange={e => setEmail(e.target.value)}
-        inputProps={{
-          'aria-label': 'description',
-        }}
-      />
-      <TextField
-        type="password"
-        placeholder="*Password"
-        className={useStyles.input}
-        onChange={e => setPassword(e.target.value)}
-        inputProps={{
-          'aria-label': 'description',
-        }}
-      /> */}
+
       <h4 style={css.title} ><Button type="submit" onClick={login} color="inherit">
         Login
                         </Button></h4>

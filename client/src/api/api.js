@@ -3,8 +3,9 @@ import {useSelector} from 'react-redux'
 import { store } from '../App'
 
 const getApi = () => {
-    return 'https://ghostwriter-dev.herokuapp.com/api/'
-    
+    const api = process.env.REACT_APP_API
+
+    return api ? api : 'http://localhost:9000/api/'    
 }
 
 const api = axios.create({

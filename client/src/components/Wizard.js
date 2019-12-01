@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import useRedirect from '../hooks/useRedirect'
 import WizardStepper from './WizardStepper'
 import PDFGenerator from './PDFGenerator'
-import BookHooks from '../hooks/useBooks'
+import BookHooks from './../hooks/BookHooks'
+import RedirectForLogin from './control/RedirectForLogin'
+
 
 /**
  * REFEREENCE STATE:
@@ -57,11 +60,13 @@ const initialState = {
 }
 
 const Wizard = (props) => {
-    const bookId = props.match.params.bookId
-    const [getBook, syncBook, ready] = BookHooks.useBook()
+     const bookId = props.match.params.bookId
+     useRedirect(props.location.pathname)
+     const [getBook, syncBook, ready] = BookHooks.useBook()
 
     const [state, setState] = useState(initialState)
 
+    const from = `/wizard/${bookId}`
     useEffect(() => {
         if (!ready) return
 
@@ -78,7 +83,7 @@ const Wizard = (props) => {
     useEffect(() => {
         const doSync = () => {
             console.log('syncing', state.data)
-            syncBook(bookId, state.data)
+            syncBook(bookId, {data: state.data})
         }
         doSync()
     }, [state.data])
