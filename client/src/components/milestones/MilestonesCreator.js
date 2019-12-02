@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import Fab from '@material-ui/core/Fab'
 import AddIcon from '@material-ui/icons/Add'
 import AddMenu from './AddMenu'
-import { List, Card, CardContent, Typography, CardActions, Button , Box, CardMedia} from '@material-ui/core'
+import { List, Card, CardContent, Typography, CardActions, Button, Box, CardMedia } from '@material-ui/core'
 import DeleteIcon from '@material-ui/icons/Delete'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import IconButton from '@material-ui/core/IconButton'
 import uuidv4 from '../../util/uuid'
 import EditMilestoneDialog from './EditMilestoneDialog'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const typeToContent = {
     military: [
@@ -31,6 +36,21 @@ class MilestonesCreator extends Component {
         menuOpen: false,
         anchor: null,
         editingItem: null,
+        deleteBookDialog: false,
+    }
+
+    openDeleteDialog = () => {
+        this.setState({
+            ...this.state,
+            deleteBookDialog: true,
+        })
+    }
+
+    closeDeleteDialog = () => {
+        this.setState({
+            ...this.state,
+            deleteBookDialog: false,
+        })
     }
 
     openMenu = (event) => {
@@ -49,8 +69,8 @@ class MilestonesCreator extends Component {
     }
 
     onItemClick = (event) => {
-            const type= event.target.id;
-      
+        const type = event.target.id;
+
         const newMilestone = {
             type,
             id: uuidv4(),
@@ -67,7 +87,8 @@ class MilestonesCreator extends Component {
     deleteMilestone = id => {
         const newMilestones = this.props.data.filter(milestone => milestone.id !== id)
         this.props.update.setMilestones(newMilestones)
-       
+        this.closeDeleteDialog()
+
     }
 
     editItem = (id) => {
@@ -104,33 +125,55 @@ class MilestonesCreator extends Component {
                 <List component="nav" >
                     {this.props.data.map(milestone => (
                         <Box m={2}>
-                        <Card >
-                            <CardMedia
-                            component="img"
-                            image={typeToImage[milestone.type]}
-                            height="140"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
-                                <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
-                                {milestone.data ? Object.keys(milestone.data).map(key => (
-                                    <Typography>{key}: {milestone.data[key]}</Typography>
-                                )) : null}
-                            </CardContent>
+                            <Card >
+                                <CardMedia
+                                    component="img"
+                                    image={typeToImage[milestone.type]}
+                                    height="140"
+                                />
+                                <CardContent>
+                                    <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography>
+                                    <Typography variant="body2" color="textSecondary">{milestone.type}</Typography>
+                                    {milestone.data ? Object.keys(milestone.data).map(key => (
+                                        <Typography>{key}: {milestone.data[key]}</Typography>
+                                    )) : null}
+                                </CardContent>
 
-                            <CardActions style={{float:'right'}}>
-                                <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
-                                <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
-                                    <DeleteIcon />
-                                </IconButton>                                
-                            </CardActions>
-                            
-                        
-                        </Card>
+                                <CardActions style={{ float: 'right' }}>
+                                    <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
+                                    <IconButton edge="end" aria-label="delete" onClick={this.openDeleteDialog}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </CardActions>
+
+
+                            </Card>
+                            <Dialog
+                    open={this.state.deleteBookDialog}
+                    onClose={this.closeDeleteDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle id="alert-dialog-title">Delete Milestone</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete this milestone? This cannot be undone.
+          </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.closeDeleteDialog} color="primary">
+                            Cancel
+          </Button>
+                        <Button  onClick={() => this.deleteMilestone(milestone.id)} autoFocus>
+                            Delete
+          </Button>
+                    </DialogActions>
+                </Dialog>
                         </Box>
                     ))}
                 </List>
                 <EditMilestoneDialog open={this.state.editingItem} handleClose={this.closeEditItem} ></EditMilestoneDialog>
+
             </div>
         )
     }
