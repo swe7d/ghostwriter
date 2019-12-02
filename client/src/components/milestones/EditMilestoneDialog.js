@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { makeStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
 import { isThisHour } from 'date-fns';
 
 const initState = {}
@@ -50,35 +50,23 @@ export default class EditMilestoneDialog extends Component {
                         <Dialog open={this.props.open} onClose={() => this.close({})} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                             <DialogContent>
-          {/* < TextField
-                                                margin = "dense"
-                                                id = "name"
-                                                label = "Name"
-                                                type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data.name : "" }
-                                                onChange = { this.onChange }
-                                                fullWidth
-                                    /> */}
                                            
-                                <p style = {css.questions}>Questions that can help you describe your milestone</p> 
+                                <p style = {css.questions}><b>Questions that can help you describe your milestone</b></p> 
                              <List component="nav" aria-label="main mailbox folders"></List>
-                            {/* {this.props.open.content.map(question => (
-                                <ListItem button>
-                                <ListItemText primary = {question.question}/>
-                            </ListItem>
-                            ))} */}
                                 {this.props.open.content.map(field => (
-                                                < TextField
+                                    [      <p><i>{field.question}</i></p>,
+                                                < Input
                                                 margin = "dense"
                                                 id = {field.question}
-                                                label = {field.question}
+                                                placeholder = "Your Answer"
                                                 type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data[field.answer] : "" }
+                                                defaultValue = { this.props.open.data ? this.props.open.data[field.answer] : field.answer }
                                                 onChange = { this.onChange }
                                                 fullWidth
                                     />
+                                    ]
                     ))}
-                                     <p style = {css.questions}>Or want to add a new question?</p> 
+                                     <p style = {css.questions}><b>Or want to add a new question?</b></p>
                                     < TextField
                                                 margin = "dense"
                                                 id = "question"
