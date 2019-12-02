@@ -39,7 +39,7 @@ function getStepContent(step, props) {
     case 1:
       return <MilestonesCreator data={props.data.milestones} update={props.update.milestones}></MilestonesCreator>;
     case 2:
-      return <DocumentDesigner data={props.data.milestones} update={props.update.milestones}></DocumentDesigner>;
+      return <DocumentDesigner data={props.data.design}></DocumentDesigner>;
     default:
       return 'Unknown step';
   }
