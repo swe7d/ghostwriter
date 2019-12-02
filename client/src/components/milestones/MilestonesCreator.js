@@ -403,7 +403,6 @@ class MilestonesCreator extends Component {
                             height="140"
                             />
                             <CardContent style = {css.content}>
-                                {/* <Typography gutterBottom variant="h5" component="h2">{milestone.data && milestone.data.name ? milestone.data.name : 'Untitled'}</Typography> */}
                                 <Typography variant="body2" color="textSecondary"><i><b>{milestone.type}</b></i></Typography>
                                 {milestone.data ? Object.keys(milestone.data).map(key => (
                                     <Typography style = {css.size}>{milestone.data[key]}</Typography>
