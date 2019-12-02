@@ -92,44 +92,6 @@ class MilestonesCreator extends Component {
 
         this.props.update.setMilestones(copy)
     }
-    onUp = (id)=>{
-        var tempData = this.props.data
-        tempData.map((key,index)=>{
-            if(key.id===id)
-            {
-                if(index>0)
-                {
-                    var tempMilestone = tempData[index]
-                    tempData[index] = tempData[index-1]
-                    tempData[index-1] = tempMilestone;
-                }
-            }
-        })
-        this.props.update.setMilestones(tempData)
-        
-        
-    }
-    onDown = (id)=>{
-        
-        var tempData = this.props.data
-        
-        tempData
-        .slice(0,tempData.length)
-        .map((key,index)=>{
-            if(key.id===id)
-            {
-                if(index<tempData.length-1)
-                {
-                    var tempMilestone = tempData[index]
-                    tempData[index] = tempData[index+1]
-                    tempData[index+1] = tempMilestone;
-                }
-                
-            }
-        })
-        this.props.update.setMilestones(tempData)
-        
-    }
 
     render() {
         return (
@@ -160,13 +122,7 @@ class MilestonesCreator extends Component {
                                 <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
                                 <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
                                     <DeleteIcon />
-                                </IconButton>   
-                                <IconButton edge="end" aria-label="upward" onClick={() => this.onUp(milestone.id)}>
-                                    <ArrowUpwardIcon />
-                                </IconButton>  
-                                <IconButton edge="end" aria-label="downward" onClick={() => this.onDown(milestone.id)}>
-                                    <ArrowDownwardIcon />
-                                </IconButton>                              
+                                </IconButton>                                
                             </CardActions>
                             
                         
