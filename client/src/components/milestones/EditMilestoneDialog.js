@@ -60,28 +60,19 @@ export default class EditMilestoneDialog extends Component {
                                                 id = {field.question}
                                                 placeholder = "Your Answer"
                                                 type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data[field.answer] : field.answer }
+                                                defaultValue = { this.props.open.data ? this.props.open.data[field.question]: "" }
                                                 onChange = { this.onChange }
                                                 fullWidth
                                     />
                                     ]
                     ))}
                                      <p style = {css.questions}><b>Or want to add other notes to you milestone?</b></p>
-                                    {/* < TextField
-                                                margin = "dense"
-                                                id = "question"
-                                                label = "Type your own question"
-                                                type = "text"
-                                                defaultValue = ""
-                                                onChange = {this.onChange}
-                                                fullWidth
-                                    /> */}
                                     < TextField
                                                 margin = "dense"
                                                 id = "otherNotes"
                                                 label = "Other Notes"
                                                 type = "text"
-                                                defaultValue = ""
+                                                defaultValue = {this.props.open.data ? this.props.open.data["otherNotes"]: ""}
                                                 onChange = {this.onChange}
                                                 fullWidth
                                     />
