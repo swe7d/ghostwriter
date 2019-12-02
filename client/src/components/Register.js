@@ -126,7 +126,7 @@ function Register(props) {
             shrink: true,
           }}
         />
-      <h4 style={css.title} ><Button type="submit" disabled={password.length <= 6 || password !== confirmPassword}
+      <h4 style={css.title} ><Button type="submit" disabled={password !== confirmPassword}
         color="inherit"
         onClick={registerUser}
         >
