@@ -49,7 +49,7 @@ export default function Login(props) {
  
     <div>
       {error && error.message}
-      <h1 style={css.title}>GhostWriter Memoir</h1>
+      <h1 style={css.title}>Login</h1>
       <form onSubmit={login}>
       <TextField
           id="standard-full-width"
