@@ -433,7 +433,7 @@ class MilestonesCreator extends Component {
 
                             <CardActions style={{float:'right'}}>
                                 <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
-                                <IconButton edge="end" aria-label="delete" onClick={() => this.deleteMilestone(milestone.id)}>
+                                <IconButton edge="end" aria-label="delete" onClick={() => this.openDeleteDialog(milestone.id)}>
                                     <DeleteIcon />
                                 </IconButton>                                
                             </CardActions>
