@@ -299,11 +299,11 @@ const typeToImage = {
 
 const css = {
     content: {
-      padding: "5px",
+      padding: "3px",
     },
 
     size: {
-        fontSize: "17px",
+        fontSize: "15px",
     }
     
   }

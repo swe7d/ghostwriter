@@ -66,8 +66,8 @@ export default class EditMilestoneDialog extends Component {
                                     />
                                     ]
                     ))}
-                                     <p style = {css.questions}><b>Or want to add a new question?</b></p>
-                                    < TextField
+                                     <p style = {css.questions}><b>Or want to add other notes to you milestone?</b></p>
+                                    {/* < TextField
                                                 margin = "dense"
                                                 id = "question"
                                                 label = "Type your own question"
@@ -75,11 +75,11 @@ export default class EditMilestoneDialog extends Component {
                                                 defaultValue = ""
                                                 onChange = {this.onChange}
                                                 fullWidth
-                                    />
+                                    /> */}
                                     < TextField
                                                 margin = "dense"
-                                                id = "answer"
-                                                label = "Answer your question"
+                                                id = "otherNotes"
+                                                label = "Other Notes"
                                                 type = "text"
                                                 defaultValue = ""
                                                 onChange = {this.onChange}
