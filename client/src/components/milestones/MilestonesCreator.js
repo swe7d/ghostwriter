@@ -36,20 +36,20 @@ class MilestonesCreator extends Component {
         menuOpen: false,
         anchor: null,
         editingItem: null,
-        deleteBookDialog: false,
+        deleteBookDialog: null,
     }
 
-    openDeleteDialog = () => {
+    openDeleteDialog = (id) => {
         this.setState({
             ...this.state,
-            deleteBookDialog: true,
+            deleteBookDialog: id,
         })
     }
 
     closeDeleteDialog = () => {
         this.setState({
             ...this.state,
-            deleteBookDialog: false,
+            deleteBookDialog: null,
         })
     }
 
@@ -141,14 +141,17 @@ class MilestonesCreator extends Component {
 
                                 <CardActions style={{ float: 'right' }}>
                                     <Button size="small" color="primary" onClick={() => this.editItem(milestone.id)}>Edit</Button>
-                                    <IconButton edge="end" aria-label="delete" onClick={this.openDeleteDialog}>
+                                    <IconButton edge="end" aria-label="delete" onClick={() => this.openDeleteDialog(milestone.id)}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </CardActions>
 
 
                             </Card>
-                            <Dialog
+          
+                        </Box>
+                    ))}
+                                      <Dialog
                     open={this.state.deleteBookDialog}
                     onClose={this.closeDeleteDialog}
                     aria-labelledby="alert-dialog-title"
@@ -164,13 +167,11 @@ class MilestonesCreator extends Component {
                         <Button onClick={this.closeDeleteDialog} color="primary">
                             Cancel
           </Button>
-                        <Button  onClick={() => this.deleteMilestone(milestone.id)} autoFocus>
+                        <Button  onClick={() => this.deleteMilestone(this.state.deleteBookDialog)} autoFocus>
                             Delete
           </Button>
                     </DialogActions>
                 </Dialog>
-                        </Box>
-                    ))}
                 </List>
                 <EditMilestoneDialog open={this.state.editingItem} handleClose={this.closeEditItem} ></EditMilestoneDialog>
 
