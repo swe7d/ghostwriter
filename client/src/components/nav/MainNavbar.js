@@ -60,9 +60,6 @@ const MainNavbar = (props) => {
         <div>
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
                     <Typography component={Link} to="/" variant="h6" className={classes.title}>
                         Ghost Writer
                          </Typography>
