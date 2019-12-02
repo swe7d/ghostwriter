@@ -35,44 +35,42 @@ export default function AddMenu(props) {
             id: "marriage",
             label: "Relationship/Marriage",
         },
-
-        /*      
                 {
                 id: "military",
-                label: Military Service
+                label: "Military Service"
                 },
                 {
                 id : "children",
-                label: Children
+                label: "Children"
                 },
                 {
                 id : "lifeevent",
-                label: Life Event
+                label: "Life Event"
                 },
                 {
                 id : "careerchanges",
-                label: Career Change
+                label: "Career Change"
                 },
                 {
                 id : "moves",
-                label: Moved
+                label: "Moved"
                 },
                 {
                 id : "travel",
-                label: Travel/Vacation
+                label: "Travel/Vacation"
                 },
                 {
                 id : "holidays",
-                label: Holiday/Event
+                label: "Holiday/Event"
                 },
                 {
                 id : "passions",
-                label: Hobby/Passion
+                label: "Hobby/Passion"
                 },
                 {
                 id : "lifelessons",
-                label: Life Lesson/Message
-        */
+                label: "Life Lesson/Message"
+                }
         ]
 
         const filtered = filterText !== '' ? milestones.filter(ms => ms.label.toLowerCase().startsWith(filterText.toLowerCase())) : milestones
