@@ -4,6 +4,7 @@ import useAuth from '../hooks/useAuth'
 //import hooks from '../hooks/useBooks'
 import { useFirebase } from 'react-redux-firebase'
 import YouTube from 'react-youtube';
+import { blue } from '@material-ui/core/colors';
 
 class Landing extends Component {
     videoOnReady(event) {
@@ -28,13 +29,27 @@ class Landing extends Component {
           height: '390',
           width: '640',
           playerVars: { // https://developers.google.com/youtube/player_parameters
-            autoplay: 1
+            autoplay: 1,
           }
         };
         return (
         	
             <dev>
-            <div>   
+            <div style = {{
+              position: "center",
+              paddingBottom: "56.25%",
+              paddingTop: 50,
+              height: 0
+            }}>
+              <YouTube
+              videoId="9WyZWvpZiB4"
+              opts={opts}
+              onReady={this._onReady}
+              />
+            </div>  
+            <div style = {{
+              position: "right"
+            }}>   
                 <p>If you’ve been dreaming about writing your life story, dream no more—Ghostwriter makes it easy for anyone to write a book about their life, even if you have no professional writing experience. 
                 </p>
                 <p>With Ghostwriter, you can say goodbye to writer’s block or wondering what to write about next.  Just sign up for a free account and open the easy-to-use web app.  Next, choose the topics you’d like to write about—from your childhood to your travels to your family and professional life. 
@@ -48,11 +63,6 @@ class Landing extends Component {
                 <p>Your story and life lessons are too important to go untold.  Sign up for Ghostwriter now so you too can make your book a reality.
                 </p>
             </div>
-            <YouTube
-            videoId="9WyZWvpZiB4"
-            opts={opts}
-            onReady={this._onReady}
-            />
             </dev>
             );
 };}
