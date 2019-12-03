@@ -30,6 +30,7 @@ class Landing extends Component {
           width: '640',
           playerVars: { // https://developers.google.com/youtube/player_parameters
             autoplay: 1,
+            color: blue,
           }
         };
         return (
@@ -39,16 +40,17 @@ class Landing extends Component {
               position: "center",
               paddingBottom: "56.25%",
               paddingTop: 50,
-              height: 0
+              height: 100
             }}>
               <YouTube
-              videoId="9WyZWvpZiB4"
+              videoId="ERQk-gGylJo"
               opts={opts}
               onReady={this._onReady}
               />
             </div>  
             <div style = {{
-              position: "right"
+              position: "right",
+              width: 640
             }}>   
                 <p>If you’ve been dreaming about writing your life story, dream no more—Ghostwriter makes it easy for anyone to write a book about their life, even if you have no professional writing experience. 
                 </p>
