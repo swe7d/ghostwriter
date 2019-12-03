@@ -35,6 +35,8 @@ class PDFGenerator extends Component {
         //splitText = doc.splitTextToSize(data[0].type, 180);
         //doc.text(splitText, 10, 20);
         //doc.addPage("a4", "portrait");
+        /*
+        //THIS PART NEEDS TO BE CHANGED
         infoText += basicInfo.firstname + " " + basicInfo.lastname + "\n";
         infoText += JSON.stringify(basicInfo.selectedDate) +"\n";
         infoText += "Born in " + basicInfo.hometown + "\n";
@@ -61,7 +63,7 @@ class PDFGenerator extends Component {
         doc.text(splitText, 10, 20);
         doc.addPage("a4", "portrait");    
         infoText = "";
-        
+        */
         
         //41 lines at current length: 53 letters per line
         //split text array stores the LINES created in indexes. 
@@ -85,6 +87,9 @@ class PDFGenerator extends Component {
                     {
                         doc.text(tempString, 10, 20);
                         doc.addPage("a4", "portrait");
+                        doc.setTextColor(watermarkTextColor); //#959595
+                        doc.setFontSize(140);
+                        doc.text(watermarkText, doc.internal.pageSize.getWidth() * (7/8), doc.internal.pageSize.getHeight(), "center", 55);
                         tempString = "";
                     }
                 if (i == splitText.length - 1)
