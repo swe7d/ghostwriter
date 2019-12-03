@@ -4,7 +4,7 @@ import { Menu, MenuItem } from '@material-ui/core'
 import MilestoneFilter from './MilestoneFilter'
 
 export default function AddMenu(props) {
-    const { anchor, open, onMenuClose, onItemClick, filterMilestones, filterText } = props
+    const { anchor, open, onMenuClose, onItemClick, filterMilestones, filterText, secondmenuOpen, secondopenMenu  } = props
 
     // use state hook
 
@@ -33,44 +33,6 @@ export default function AddMenu(props) {
             id: "marriage",
             label: "Relationship/Marriage",
         },
-
-        /*      
-                {
-                id: "military",
-                label: Military Service
-                },
-                {
-                id : "children",
-                label: Children
-                },
-                {
-                id : "lifeevent",
-                label: Life Event
-                },
-                {
-                id : "careerchanges",
-                label: Career Change
-                },
-                {
-                id : "moves",
-                label: Moved
-                },
-                {
-                id : "travel",
-                label: Travel/Vacation
-                },
-                {
-                id : "holidays",
-                label: Holiday/Event
-                },
-                {
-                id : "passions",
-                label: Hobby/Passion
-                },
-                {
-                id : "lifelessons",
-                label: Life Lesson/Message
-        */
         ]
 
         const milestonesList = milestones.filter(name => {
@@ -80,6 +42,8 @@ export default function AddMenu(props) {
                 <MenuItem onClick={onItemClick} id={milestone.id}>{milestone.label}</MenuItem>
             );
         });
+
+
 
         return(
             <div>
@@ -93,5 +57,6 @@ export default function AddMenu(props) {
                 {milestonesList}
             </Menu>
             </div>
-            )
+            );
+  
 }
