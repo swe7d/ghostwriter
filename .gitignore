@@ -1,2 +1,14 @@
 node_modules
 firebase-credential.json
+{
+  "type": "service_account",
+  "project_id": "ghostwriter-f7e9d",
+  "private_key_id": "4d483d152eb4bef5f392f0b0a96b9816cc86fdb4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDofpOa8vGzFs0a\nPI2fLo3r42gCjwx1Fslux/8VO7Ux6YqWSB49jRgeZp0SAyH0hswUOyZ2xf2iXpW+\nGOz1bWyKO9ZjGmg2dikeTlWtv5+lKpQhCbz7FP0S5Pf8ByrTUfJuGscrufAyZ/mn\ndCQmhooV5DH30xdqxXS45wr1Viq0Wyy9gj/MpbmznorG/QeAaapz4f2ywGRmxCG4\nSt+wmyr1PTKmf+ve3iN63xHLNDR0YK4MMW3Zh3uIjR6mgCWyUpP05uIxnt9l1p/E\nZ9/OUrbsq9L7E9ujml/tcefGMibsSZsNLjmRteSmEnxuLc8gl4rbdsWulnHcOPis\nzxlBM8jzAgMBAAECggEANmiQ0H00VQ3r98zd87eoXOC+EYM6jhhEEZnaNzTe5Yxa\n82pzMUJYt5yZ+4IiKyB0l/Nzv+37ukjaUD9zDMiL0xnHxS+D3eLvInmAkYW7raJ2\nQfkOcc/qncZZxnBC9GtECcJYhAIilRlCEo8aeq2XmSHrE60h2MnW1AK1zM5adhRC\nBri9EjQnZ+Z8Wnq1EHSd0LzFKvAusWLZ9GFeh8KHG6pn5qotOLzGuOJj0pU4S0dj\nJizI79rRQCYxIQNHmNi6Juz+ZcRLmjsZd65h7sdfm18IICJ8pKu/3dQmPO8CFGKT\nYKeX9ooqeDpN4VD25Br313SWPT8vEiY+vP7/Oo7gOQKBgQD1c0r9Lkz86e02QUBn\niQaRkf33AzU2Mdi0o5DlE6to5bOK5HxBBKPmsIjtUNrloyjhjFKDRn2TRmcgJpi+\nrP51kwskpmHHjjTGdwsZ5w6mVcNqoDQZdjLkcl3KGcKwK4WfLRs5D4TPV0u8VEHd\nXco9EnOLPYw7ST4wGVS1KqJ11QKBgQDyfLqPbz0voCYiWQ1eu42F2ziSKoWg2iy3\n2xFtlUHmYOam2veRXZ/Qs2q+sVBUbxwVYfGXp/2nYOMW3bRIShN9FHCkLTP05dvG\nIIw74JnNrUfb5FHVQNfs0v5IOB+xt9MYA3pL3oLbA40DG6B2ExdZVCnw+/2sJQbA\n2AS6SpO/pwKBgQClPiY5BufLyUzqnslWKrjiXdAFcQJs5ugGzKtqnXBjoWjbU/GW\n8CHL2AOHCU0lFlAacJbITDeUY+xfh7yDegGhdAondWAUsdcz2cb+fECvmMOD0DDj\nB2FBzQD5Y5hfdB10STCvnJQD5rhVJMBm4JKbxQVGs3vqGeglB5iwkvBmtQKBgCML\n4+rXKQC5JMnSFRyb/thZ1tNJUgbtgYkRIHO2HtAtMSjsfNuFrJN9WvA0sGeDp4tv\nnHtOzFpkpm2nnWbVTfvF+IHCBsBeeGUqTxpYW+JeKQSe+zTXKl4QILBPbEVDTD8s\nQYC1qDP/T2IjnA10tOs0PtuVkBRRRaiZkBVcsf4BAoGAMxN0c7XCcpME/pkYnpgM\n0VtttS8Ne+x+UaHr2/HZDIuTNlYOyFb/V87sHn6O0SlemKkQ3kghppBtt7tTs6tU\nfvEWhBTrGgWPmOVtnppMWnRoBifLHjaYzF3TgYbS/reHJ0QuHVutzKT7BDHfxx+A\n5d5MktcWR+8JMCfPtLiNV6c=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-smvup@ghostwriter-f7e9d.iam.gserviceaccount.com",
+  "client_id": "106865797808128792467",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-smvup%40ghostwriter-f7e9d.iam.gserviceaccount.com"
+}
