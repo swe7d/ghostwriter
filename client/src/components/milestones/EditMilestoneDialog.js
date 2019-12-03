@@ -6,12 +6,25 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Input from '@material-ui/core/Input';
+import { isThisHour } from 'date-fns';
 
 const initState = {}
 
+const css = {
+    questions: {
+      textAlign: 'center',
+    }
+    
+  }
+
 export default class EditMilestoneDialog extends Component {
     state = initState
-
+    isOpen = false;
+    
     onChange = e => {
         this.setState({
             data: {
@@ -29,7 +42,7 @@ export default class EditMilestoneDialog extends Component {
     }
 
     render() {
-        return (
+             return (
             <div>
                 {
                     this.props.open ?
@@ -37,30 +50,32 @@ export default class EditMilestoneDialog extends Component {
                         <Dialog open={this.props.open} onClose={() => this.close({})} aria-labelledby="form-dialog-title">
                             <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                             <DialogContent>
-                                <DialogContentText>
-                                    Make changes to the milestone and save them
-          </DialogContentText>
-          < TextField
-                                                margin = "dense"
-                                                id = "name"
-                                                label = "Name"
-                                                type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data.name : "" }
-                                                onChange = { this.onChange }
-                                                fullWidth
-                                    />
+                                           
+                                <p style = {css.questions}><b>Questions that can help you describe your milestone</b></p> 
+                             <List component="nav" aria-label="main mailbox folders"></List>
                                 {this.props.open.content.map(field => (
-                                                < TextField
+                                    [      <p><i>{field.question}</i></p>,
+                                                < Input
                                                 margin = "dense"
-                                                id = {field}
-                                                label = {field}
+                                                id = {field.question}
+                                                placeholder = "Your Answer"
                                                 type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data[field] : "" }
+                                                defaultValue = { this.props.open.data ? this.props.open.data[field.question]: "" }
                                                 onChange = { this.onChange }
                                                 fullWidth
                                     />
+                                    ]
                     ))}
-            
+                                     <p style = {css.questions}><b>Or want to add other notes to you milestone?</b></p>
+                                    < TextField
+                                                margin = "dense"
+                                                id = "otherNotes"
+                                                label = "Other Notes"
+                                                type = "text"
+                                                defaultValue = {this.props.open.data ? this.props.open.data["otherNotes"]: ""}
+                                                onChange = {this.onChange}
+                                                fullWidth
+                                    />
                     </DialogContent>
                             <DialogActions>
                                 <Button onClick={() => this.close({})} color="primary">
