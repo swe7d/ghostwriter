@@ -15,28 +15,21 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const typeToContent = {
+const typeToContent = { //list of questions for each type of milestone
     "Military Experience": [
         {question: 'If you served in the military, when and in what branch did you serve? Were you drafted or did you enlist voluntarily? If the latter, why?',
-        // 
         },
         {question: "Where did you serve? Describe your basic training and the experience of leaving home. What was it like for you to adjust to military life? Was it harder or easier than you had thought? Describe a typical day early in your service.",
-        // 
         },
-        {question: "Share your impressions of the place or places you served. If you were deployed to more than one location, describe each of these and what you did there. Describe any interactions you had with residents of the surrounding communities.",
-        // 
+        {question: "Share your impressions of the place or places you served. If you were deployed to more than one location, describe each of these and what you did there. Describe any interactions you had with residents of the surrounding communities.", 
         },
-        {question: "What were your responsibilities? Describe any specialized training you received or new skills that you learned. Did any of these carry over into your future professional life?",
-        // 
+        {question: "What were your responsibilities? Describe any specialized training you received or new skills that you learned. Did any of these carry over into your future professional life?", 
         },
         {question: "Did you see active combat? If so, describe the conflict you participated in (when and where it happened, what the goals of your battle were), your responsibilities during actual combat, and your impressions of the experience. Did you lose any friends or colleagues in battle or see any get injured? Describe these experiences if you had them. If you experienced any injuries or trauma from your service, describe the experience. Describe any impact this had on your post-military life.",
-        // 
         },
         {question: "If you received any promotions during your service, describe when and how they happened. What new responsibilities did you take on when promoted? How did you feel about your new position? If you moved because of your promotion, describe where you moved to and what the experience was like. If your spouse/kids were involved in any of your moves, describe their activities and your perceptions of their experience during this time.",
-        // 
         },
         {question: "How long did you stay in the service? If you chose to pursue a long-term military career,  describe why—what about it interested or benefited you? If you chose to leave, explain why and what your future plans were. If you retired, say what rank you retired at and describe your future plans. What were your feelings about returning to civilian life?",
-        // 
         },
     ],
     "Relationship/Marriage": [
@@ -290,7 +283,7 @@ const typeToContent = {
     ]
 }
 
-const typeToImage = {
+const typeToImage = { //list of pictures that are used for each type of milestone
     "Relationship/Marriage": "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
     "Military Experience": "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg",
     "Your Background and Early years": "https://www.virtual-college.co.uk/-/media/virtual-college/news/safeguarding-news/the-tickell-review-of-the-early-years-foundation-stage.ashx?h=504&la=en&mh=504&mw=896&w=896&hash=ED9C810CF3A2786973A3194A26CD3F4FD3F7DE45",
@@ -309,7 +302,7 @@ const typeToImage = {
     "Holidays and Special events": "https://www.fasciagraphics.co.uk/upload/5499218f99283Christmas_5.jpg"
 }
 
-const css = {
+const css = { //basic css for the layout of the milestone
     content: {
       padding: "3px",
     },
@@ -330,21 +323,21 @@ class MilestonesCreator extends Component {
         deleteBookDialog: null,
     }
 
-    openDeleteDialog = (id) => {
+    openDeleteDialog = (id) => {  //opening the delete dialogue confirmation
         this.setState({
             ...this.state,
             deleteBookDialog: id,
         })
     }
 
-    closeDeleteDialog = () => {
+    closeDeleteDialog = () => {  //closing the delete dialogue confirmation
         this.setState({
             ...this.state,
             deleteBookDialog: null,
         })
     }
 
-    openMenu = (event) => {
+    openMenu = (event) => {    
         this.setState({
             ...this.state,
             menuOpen: true,
@@ -361,8 +354,8 @@ class MilestonesCreator extends Component {
     }
 
 
-    onItemClick = (event) => {
-        const type= event.target.id;
+    onItemClick = (event) => {      //captures the type of milestone clicked on and stores it typeToContent attributes to the main state
+        const type= event.target.id;   
   
     const newMilestone = {
         type,

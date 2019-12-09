@@ -29,12 +29,12 @@ export default class EditMilestoneDialog extends Component {
         this.setState({
             data: {
                 ...this.state.data,
-                [e.target.id]: e.target.value,
+                [e.target.id]: e.target.value, //stores in the state as a question : answer mapping
             }
         })
     }
 
-    close = (data) => {
+    close = (data) => {                                     //method called when edit box is closed or saved
         this.props.handleClose(this.props.open.id, data)
         this.setState({
             data:null
@@ -53,21 +53,21 @@ export default class EditMilestoneDialog extends Component {
                                            
                                 <p style = {css.questions}><b>Questions that can help you describe your milestone</b></p> 
                              <List component="nav" aria-label="main mailbox folders"></List>
-                                {this.props.open.content.map(field => (
+                                {this.props.open.content.map(field => (    //loops through all the questions of the type of milestone that is being edited
                                     [      <p><i>{field.question}</i></p>,
                                                 < Input
                                                 margin = "dense"
                                                 id = {field.question}
                                                 placeholder = "Your Answer"
                                                 type = "text"
-                                                defaultValue = { this.props.open.data ? this.props.open.data[field.question]: "" }
+                                                defaultValue = { this.props.open.data ? this.props.open.data[field.question]: "" }  //presents answer by default or else sets the mapping of answer to ""
                                                 onChange = { this.onChange }
                                                 fullWidth
                                     />
                                     ]
                     ))}
-                                     <p style = {css.questions}><b>Or want to add other notes to you milestone?</b></p>
-                                    < TextField
+                                     <p style = {css.questions}><b>Or want to add other notes to you milestone?</b></p>  
+                                    < TextField                         //additional notes
                                                 margin = "dense"
                                                 id = "otherNotes"
                                                 label = "Other Notes"

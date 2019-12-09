@@ -29,7 +29,6 @@ import firebase from 'firebase'
 import useAuth from './hooks/useAuth';
 import MyBooks from './components/mybooks/MyBooks';
 
-
 var fbConfig = {
   apiKey: "AIzaSyCQUtSLY1PKmfMJM2rLrJie4wEify1gjDg",
   authDomain: "ghostwriter-f7e9d.firebaseapp.com",
@@ -41,7 +40,9 @@ var fbConfig = {
   measurementId: "G-C4GHKHJ0Q0"
 };
 
-
+if (process.env.REACT_APP_FIREBASE_CONFIG) {
+  fbConfig = JSON.parse(process.env.REACT_APP_FIREBASE_CONFIG)
+}
 
 // react-redux-firebase config
 const rrfConfig = {
