@@ -326,6 +326,7 @@ class MilestonesCreator extends Component {
         menuOpen: false,
         anchor: null,
         editingItem: null,
+        filterText: '',
         deleteBookDialog: null,
     }
 
@@ -406,6 +407,12 @@ class MilestonesCreator extends Component {
         this.props.update.setMilestones(copy)
     }
 
+    filterMilestones(value) {
+        this.setState({
+            filterText: value
+        });
+    }
+
     render() {
         return (
             <div>
@@ -413,7 +420,7 @@ class MilestonesCreator extends Component {
                     <AddIcon />
                     Add Milestone
                 </Fab>
-                <AddMenu anchor={this.state.anchor} open={this.state.menuOpen} onMenuClose={this.onMenuClose} onItemClick={this.onItemClick}></AddMenu>
+                <AddMenu anchor={this.state.anchor} open={this.state.menuOpen} onMenuClose={this.onMenuClose} onItemClick={this.onItemClick} filterMilestones={this.filterMilestones} filterText={this.state.filterText} typeToContent={typeToContent}></AddMenu>
                 <List component="nav" >
                     {this.props.data.map(milestone => (
                         <Box m={2}>

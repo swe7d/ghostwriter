@@ -1,37 +1,57 @@
-import React from 'react'
-import { Menu, MenuItem } from '@material-ui/core'
+import React, { useState } from 'react'
+import { Menu, MenuItem, Popover } from '@material-ui/core'
+
+import MilestoneFilter from './MilestoneFilter'
+import TextField from '@material-ui/core/TextField'
 
 export default function AddMenu(props) {
-    const { anchor, open, onMenuClose, onItemClick, secondmenuOpen, secondopenMenu } = props
 
-    
+    const [filterText, setFilterText] = useState('')
+    const { anchor, open, onMenuClose, onItemClick, filterMilestones, secondmenuOpen, secondopenMenu, typeToContent } = props
 
-    return (
-        <div>
-            <Menu
+    const milestones = [];
+   for(var key in typeToContent){
+      milestones.push({id: key});
+   }
+
+        const filtered = filterText !== '' ? milestones.filter(ms => ms.id.toLowerCase().startsWith(filterText.toLowerCase())) : milestones
+        const milestonesList = filtered.map(milestone => {
+            return (
+                <MenuItem onClick={onItemClick} id={milestone.id}>{milestone.id}</MenuItem>
+            );
+        })
+        
+        const handleFilterChange = e => {
+            e.preventDefault()
+            e.stopPropagation()
+            setFilterText(e.target.value)
+        }
+
+        return(
+            <div>
+            <Popover
             anchorEl={anchor}
             keepMounted
             open={open}
             onClose={onMenuClose}
+            disableAutoFocusItem
+            autoFocus={false}
             >
-                <MenuItem onClick={onItemClick} id="Your Background and Early years">Your Background and Early years</MenuItem>
-                <MenuItem onClick={onItemClick} id="Childhood and Growing up">Childhood and Growing up</MenuItem>
-                <MenuItem onClick={onItemClick} id="Teen Years">Teen Years</MenuItem>
-                <MenuItem onClick={onItemClick} id="College">College(if you attended)</MenuItem>
-                <MenuItem onClick={onItemClick} id="Graduate or Professional school">Graduate or Professional school(if you attended)</MenuItem>
-                <MenuItem onClick={onItemClick} id="Your first full-time job">Your first full-time job</MenuItem>
-                <MenuItem onClick={onItemClick} id="Relationship/Marriage">Relationships/Marriage</MenuItem>
-                <MenuItem onClick={onItemClick} id="Military Experience">Military Experience(if any)</MenuItem>
-                <MenuItem onClick={onItemClick} id="Children">Children(if any)</MenuItem>
-                <MenuItem onClick={onItemClick} id="Significant Life Event">Significant Life Event</MenuItem>
-                <MenuItem onClick={onItemClick} id="Career changes">Career changes</MenuItem>
-                <MenuItem onClick={onItemClick} id="Moves">Moves</MenuItem>
-                <MenuItem onClick={onItemClick} id="Travel/Vacations">Travel/Vacations</MenuItem>
-                <MenuItem onClick={onItemClick} id="Holidays and Special events">Holidays and Special events</MenuItem>
-                <MenuItem onClick={onItemClick} id="Hobbies/Personal passions">Hobbies/Personal passions</MenuItem>
-                <MenuItem onClick={onItemClick} id="Life Lessons and Messages">Life Lessons and Messages</MenuItem>
-            </Menu>
-        </div>
-    )
+                <MenuItem>
+                
+                        <TextField
+          id="outlined-search"
+          label="Filter text"
+          type="search"
+          margin="normal"
+          variant="outlined"
+          onChange={handleFilterChange}
+        />
+                </MenuItem>
+                {/* <MilestoneFilter/> */}
+                {milestonesList}
+            </Popover>
+            </div>
+            );
   
 }
