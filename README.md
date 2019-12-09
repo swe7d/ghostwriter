@@ -46,3 +46,55 @@ jsPDF is a library that generates PDFs in javascript on the client-side. The lib
 * User can reorder how milestones appear in the final downloaded document
 * User can download a PDF version of their book
 * User can search for milestones to add to their book 
+
+## Images
+All images were taken from unsplash, where all images are free to use
+
+### Credits
+Everton Vila
+@evertonvila
+
+Jeffrey F Lin
+@jeffreyflin
+
+Scott Webb
+@scottwebb
+
+Susan Holt Simpson
+@shs521
+
+Matt Ragland
+@mattragland
+
+Priscilla Du Preez
+@priscilladupreez
+
+Free To Use Sounds
+@freetousesoundscom
+
+Ben Wicks
+@profwicks
+
+Brendan Church
+@bdchu614
+
+Erda Estremera
+@erdaest
+
+Ethan Robertson
+@ethanrobertson
+
+Steve Johnson
+@steve_j
+
+Belinda Fewings
+@bel2000a
+
+Cytonn Photography
+@cytonn_photography
+
+Joshua Hoehne
+@mrthetrain
+
+freestocks.org
+@freestocks

@@ -25,29 +25,11 @@ const styles = theme => ({
   })
 
 class BasicInfo extends Component{
-    // state = {
-        // firstname: "",
-        // lastname: "",
-        // dob: "",
+    // Central state is getting passed down into WizardStepper and then into BasicInfo.
+    // It also passes down functions for changing state.
+    // This component calls the functions to change the central state and then
+    // the new state gets passed back down into your component.
 
-    // }
-
-    // onChange = e =>{
-    //     this.setState({
-    //         ...this.state,
-    //         [e.target.id]: e.target.value,
-    //     })
-    // }
-
-    // // 
-    // state = {
-    //     firstname: "",
-    //     lastname: "",
-    //     dob: "",
-    //     hometown: "",
-    //     title: "",
-    //     selectedDate: null,
-    // }
 
     handleDateChange = date => {
         const newInfo = {
@@ -57,10 +39,6 @@ class BasicInfo extends Component{
 
         this.props.update.setBasicInfo(newInfo)
 
-        // this.setState({
-        //     ...this.state,
-        //     selectedDate: date,
-        // })
     };
 
     handleInputChange = e => {
@@ -71,10 +49,6 @@ class BasicInfo extends Component{
 
         this.props.update.setBasicInfo(newInfo)
 
-        // this.setState({
-        //     ...this.state,
-        //     [e.target.id]: e.target.value,
-        // })
     }
 
     render() {
@@ -83,7 +57,7 @@ class BasicInfo extends Component{
 
         return (
             //basic info
-            <form className={classes.container} noValidate autoComplete="off">
+            <form className={classes.container} noValidate autoComplete="off"> {/*https://material-ui.com/components/text-fields/#textfield*/}
                 {/* {JSON.stringify(this.state)} */}
                 <div>
                     <TextField
@@ -110,7 +84,7 @@ class BasicInfo extends Component{
                     />
                 </div>
                 <div>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}> {/*https://material-ui.com/components/pickers/*/}
                     <Grid container justify="space-around">
                         <KeyboardDatePicker
                         disableToolbar

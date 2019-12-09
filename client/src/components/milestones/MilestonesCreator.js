@@ -284,22 +284,22 @@ const typeToContent = { //list of questions for each type of milestone
 }
 
 const typeToImage = { //list of pictures that are used for each type of milestone
-    "Relationship/Marriage": "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
-    "Military Experience": "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg",
-    "Your Background and Early years": "https://www.virtual-college.co.uk/-/media/virtual-college/news/safeguarding-news/the-tickell-review-of-the-early-years-foundation-stage.ashx?h=504&la=en&mh=504&mw=896&w=896&hash=ED9C810CF3A2786973A3194A26CD3F4FD3F7DE45",
-    "Childhood and Growing up": "https://allthatsinteresting.com/wordpress/wp-content/uploads/2015/08/kids-playing-outside.jpg",
-    "College": "https://uconn-today-universityofconn.netdna-ssl.com/wp-content/uploads/2015/12/LawDegree_graduationcap_38250038_l1-1024x683.jpg",
-    "Graduate or Professional school": "https://cdn.uconnectlabs.com/wp-content/uploads/sites/7/2015/05/istockgraduationmortarboards.jpg?v=5606",
-    "Your first full-time job": "https://blog.hubspot.com/hubfs/biweekly-paycheck.jpg",
-    "Children": "https://www.cdc.gov/childrenindisasters/features/images/childrens-preparedness-unit_456px.jpg",
-    "Career changes": "https://s3.amazonaws.com/fjwp/blog/wp-content/uploads/2018/08/06065455/How-to-Make-a-Career-Change-or-Transition-353x177.jpg",
-    "Moves": "https://t2conline.com/wp-content/uploads/2018/01/21d89630b2308f383404a768f516e5b4.jpeg",
-    "Travel/Vacations": "https://www.komando.com/wp-content/uploads/2019/05/beach-vacation.jpg",
-    "Hobbies/Personal passions": "https://henricolibrary.org/images/easyblog_articles/129/b2ap3_large_20190712-hobbies-blog.jpg",
-    "Life Lessons and Messages": "https://miro.medium.com/max/4386/1*Y6E0MBrBaqIWekxmpQL-vg.jpeg",
-    "Significant Life Event": "https://leonlogothetis.com/wp-content/uploads/2015/08/1773565-640x400.jpg",
-    "Teen Years": "https://sites.google.com/site/keitolsm/_/rsrc/1472851927037/config/customLogo.gif?revision=4",
-    "Holidays and Special events": "https://www.fasciagraphics.co.uk/upload/5499218f99283Christmas_5.jpg"
+    "Relationship/Marriage": "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    "Military Experience": "https://images.unsplash.com/photo-1534724364725-325f10a8e182?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Your Background and Early years": "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80",
+    "Childhood and Growing up": "https://images.unsplash.com/photo-1535572290543-960a8046f5af?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "College": "https://images.unsplash.com/photo-1535982330050-f1c2fb79ff78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80",
+    "Graduate or Professional school": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Your first full-time job": "https://images.unsplash.com/photo-1568598035424-7070b67317d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80",
+    "Children": "https://images.unsplash.com/photo-1540479859555-17af45c78602?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Career changes": "https://images.unsplash.com/photo-1483213097419-365e22f0f258?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Moves": "https://images.unsplash.com/photo-1520038410233-7141be7e6f97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80",
+    "Travel/Vacations": "https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Hobbies/Personal passions": "https://images.unsplash.com/photo-1522410818928-5522dacd5066?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Life Lessons and Messages": "https://images.unsplash.com/photo-1564144006388-615f4f4abb6e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    "Significant Life Event": "https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+    "Teen Years": "https://images.unsplash.com/photo-1527187162622-535b785f65f5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1297&q=80",
+    "Holidays and Special events": "https://images.unsplash.com/photo-1513885535751-8b9238bd345a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
 }
 
 const css = { //basic css for the layout of the milestone
