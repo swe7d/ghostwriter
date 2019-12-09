@@ -4,15 +4,29 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "./deploy.sh"
+    "build": "./deploy.sh",
+    "test": "mocha ./routes/test.js"
   },
   "dependencies": {
+    "@material-ui/core": "^4.5.1",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "firebase-admin": "^8.8.0",
     "jspdf": "^1.5.3",
+    "mongoose": "^5.7.11",
     "morgan": "~1.9.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "redux": "^4.0.4",
+    "video-react": "^0.14.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2"
   }
 }
