@@ -31,6 +31,9 @@ This project uses Materal UI for the front end components and styling.
 ### Firebase Auth
 Firebase is only used for authentication and creating tokens that allow access to the backend. Each backend endpoint is secured with a Firebase Auth token. 
 
+### jsPDF
+jsPDF is a library that generates PDFs in javascript on the client-side. The library is used to create, format, and download the user's pdf of their book.
+
 ## Features Implemented
 * User can login
 * User can register
