@@ -59,6 +59,7 @@ const initialState = {
     }
 }
 
+// the central component that stores all state about a given book. all components modify this state, and it is syncrhonized with the backend
 const Wizard = (props) => {
      const bookId = props.match.params.bookId
      useRedirect(props.location.pathname)

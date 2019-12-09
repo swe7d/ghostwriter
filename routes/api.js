@@ -4,6 +4,7 @@ var admin = require('../admin/admin')
 
 const { models } = require('../db/ConnectMongodb')
 
+// ensures user is authenticated before serving
 const authMiddleware = async (req, res, next) => {
     console.log(req.headers)
     const token = req.headers.authorization
@@ -17,6 +18,7 @@ const authMiddleware = async (req, res, next) => {
 
 }
 
+// finds a user's book based on the id given to the request
 const findBookMiddleware = async (req, res, next) => {
     const bookId = req.params.id
     models.Book.findById(bookId, (err, book) => {
@@ -29,6 +31,7 @@ const findBookMiddleware = async (req, res, next) => {
     })
 }
 
+// verifies that the user is trying to use their own book and not someone elses
 const verifyOwnerMiddleware = (req, res, next) => {
     if (req.uid !== req.book.owner) {
         res.status(401).send('you can only touch your book')
@@ -42,6 +45,7 @@ router.get('/', function(req, res, next) {
     res.send('api works')
 });
 
+// gets a book by id
 router.get('/books/:id', authMiddleware, (req, res) => {
     const bookId = req.params.id
     
@@ -58,6 +62,7 @@ router.get('/books/:id', authMiddleware, (req, res) => {
     })
 })
 
+// gets all of a user's books
 router.get('/books', authMiddleware, (req, res) => {
     const { uid } = req
 
@@ -70,6 +75,7 @@ router.get('/books', authMiddleware, (req, res) => {
     })
 })
 
+// makes a new book and returns its id
 router.post('/books', authMiddleware, (req, res) => {
     const name = req.body.name
     const newBook = new models.Book({
@@ -87,11 +93,13 @@ router.post('/books', authMiddleware, (req, res) => {
     })
 })
 
+// deletes a book
 router.delete('/books/:id', [authMiddleware, findBookMiddleware, verifyOwnerMiddleware], async (req, res) => {
     const deleted = await req.book.remove()
     res.send(deleted)
 })
 
+// updates a book on every keystroke
 router.put('/books/:id', authMiddleware, (req, res) => {
     const bookId = req.params.id
     models.Book.findById(bookId, (err, book) => {

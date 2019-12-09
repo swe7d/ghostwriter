@@ -10,6 +10,7 @@ const makeHeader = (token) => (
     }
 )
 
+// automatically synchronizes the backend books with the frontend
 const useBook = () => {
     const [token, _] = useAuth()
 
@@ -25,6 +26,7 @@ const useBook = () => {
     return [getBook, syncBook, !!token]
 }
 
+// gets books from the backend and gives the frontend a way to update/delete them
 const useBooks = () => {
     const [token, _] = useAuth()
     const [books, setBooks] = useState(null)
@@ -65,6 +67,7 @@ const useBooks = () => {
     return [books, error, deleteBook, changeTitle]
 }
 
+// creates a new book and returns its id
 const useNewBook = () => {
     const [authToken, _] = useAuth()
 
