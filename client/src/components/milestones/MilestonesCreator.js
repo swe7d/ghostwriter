@@ -284,8 +284,8 @@ const typeToContent = { //list of questions for each type of milestone
 }
 
 const typeToImage = { //list of pictures that are used for each type of milestone
-    "Relationship/Marriage": "https://ak5.picdn.net/shutterstock/videos/2347895/thumb/3.jpg",
-    "Military Experience": "https://www.fractalcamo.com/uploads/5/9/0/2/5902948/s189772745713394276_p71_i56_w750.jpeg",
+    "Relationship/Marriage": "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    "Military Experience": "https://images.unsplash.com/photo-1534724364725-325f10a8e182?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
     "Your Background and Early years": "https://www.virtual-college.co.uk/-/media/virtual-college/news/safeguarding-news/the-tickell-review-of-the-early-years-foundation-stage.ashx?h=504&la=en&mh=504&mw=896&w=896&hash=ED9C810CF3A2786973A3194A26CD3F4FD3F7DE45",
     "Childhood and Growing up": "https://allthatsinteresting.com/wordpress/wp-content/uploads/2015/08/kids-playing-outside.jpg",
     "College": "https://uconn-today-universityofconn.netdna-ssl.com/wp-content/uploads/2015/12/LawDegree_graduationcap_38250038_l1-1024x683.jpg",
